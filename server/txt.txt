@@ -1,0 +1,89 @@
+STEP BY STEP:
+go mod init namaproject
+go get github.com/labstack/echo/v4
+--------------------------------------------------------------------------------------------------
+create main.go (CRUD)
+routes/route.go 
+--------------------------------------------------------------------------------------------------
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/mysql
+go get github.com/go-playground/validator/v10
+--------------------------------------------------------------------------------------------------
+FUNGSI FOLDER:
+handlers = fungsi fungsi CRUD
+routes = untuk routing enpoint/URL
+database/migration.go = automatic migration when running the app
+models = struct database
+pkg/mysql/mysql.go = koneksi ke database
+dto = data transfer object/struct
+repositories = fetching data/crud ke database
+--------------------------------------------------------------------------------------------------
+handlers and routes user, film, category, transaction, category = working fine
+--------------------------------------------------------------------------------------------------
+
+
+Fungsi RunMigration() digunakan untuk melakukan migrasi basis data dengan menggunakan model User menggunakan fungsi AutoMigrate() dari objek mysql.DB pada bahasa pemrograman Golang. Migrasi basis data adalah proses pembaruan skema basis data ke versi yang lebih baru atau penerapan perubahan pada skema yang sudah ada.
+
+Jika proses migrasi gagal, fungsi akan mencetak pesan kesalahan ke konsol dan kemudian menghentikan program dengan pesan "Migration Failed". Fungsi panic() akan menghentikan eksekusi program seketika.
+
+Jika proses migrasi berhasil, fungsi akan mencetak pesan "Migration Success" ke konsol.
+----------------------------------------------------------------------------------------------------
+Kode Golang tersebut mendefinisikan sebuah tipe data baru yang disebut SuccessResult. Tipe data ini memiliki dua field yaitu Code dan Data yang masing-masing memiliki tipe data int dan interface{}.
+
+Field Code digunakan untuk menyimpan kode status atau kode error yang terkait dengan respons yang dikembalikan. Sedangkan field Data digunakan untuk menyimpan data yang berkaitan dengan respons yang dikembalikan.
+
+Adapun tag json yang digunakan pada masing-masing field digunakan untuk menentukan nama kunci atau key pada saat data di-encode menjadi format JSON. Pada field Code, nama kunci atau key yang digunakan pada JSON adalah code, sedangkan pada field Data, nama kunci atau key yang digunakan pada JSON adalah data.
+
+Dalam contoh kode tersebut, Data memiliki tipe data interface{}. Hal ini berarti bahwa Data dapat menyimpan nilai dari berbagai jenis tipe data, seperti string, angka, objek, dan sebagainya. Pada saat penggunaan, tipe data Data harus di-casting terlebih dahulu ke tipe data yang sesuai untuk dapat mengakses nilainya secara benar.
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+
+TASK 1 register is DONE
+TASK 2 login is DONE 
+--------------------------------------------
+TASK 3 USER:
+-get all user is DONE
+-get specific user is DONE
+-update user is DONE
+-delete user is DONE
+--------------------------------------------
+middleware is DONE
+--------------------------------------------
+TASK 4 FILM:
+-get all film is DONE
+-get specific film is DONE
+-delete film is DONE
+-update film X
+-create film X
+--------------------------------------------
+TASK 5 CATEGORY:
+-get all category is DONE
+-get specific category is DONE
+-create category is DONE
+-update category is DONE
+-delete category is DONE
+-relasi masih ada bug
+--------------------------------------------
+TASK 6 TRANSACTION:
+-get all transaction is DONE
+-get specific transaction is DONE
+-create transaction is DONE
+-update transaction is DONE
+-delete transaction is DONE
+-relasi BELUM
+--------------------------------------------
+TASK 7 EPISODE:
+-get all episode is DONE
+-get specific episode is DONE
+-create episode is DONE
+-update episode is DONE
+-delete episode is DONE
+-relasi BELUM
+
+
