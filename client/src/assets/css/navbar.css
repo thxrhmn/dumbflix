@@ -1,0 +1,18 @@
+/* .navbar {
+  background-color: red;
+  display:flex;
+}
+
+.navbar .menu {
+  background-color: green;
+}
+.navbar .logo {
+  background-color: purple
+}
+.navbar .register-login {
+  background-color: blue;
+} */
+
+.navbar .menu ul li a {
+  color: white;
+}
