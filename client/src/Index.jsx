@@ -1,27 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+
+import { UserContextProvider } from './context/UserContext';
+
 import { QueryClient, QueryClientProvider } from "react-query"
 
-import { UserProvider } from "./context/UserContext"
 import { ModalLoginProvider } from "./context/ModalLoginContext"
 import { ModalRegisterProvider } from "./context/ModalRegisterContext"
-import { DropdownProvider } from "./context/DropdownContext"
+import { DropdownProvider, DropdownAdminProvider } from "./context/DropdownContext"
 
 const client = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={client}>
-      <UserProvider>
+    <UserContextProvider>
+      <QueryClientProvider client={client}>
         <ModalLoginProvider>
           <ModalRegisterProvider>
             <DropdownProvider>
-              <App />
+              <DropdownAdminProvider>
+                <App />
+              </DropdownAdminProvider>
             </DropdownProvider>
           </ModalRegisterProvider>
         </ModalLoginProvider>
-      </UserProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </UserContextProvider>
   </React.StrictMode>,
 )

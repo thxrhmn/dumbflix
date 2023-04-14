@@ -11,3 +11,15 @@ export const DropdownProvider = (props) => {
     </DropdownContext.Provider>
   )
 }
+
+export const DropdownAdminContext = createContext()
+
+export const DropdownAdminProvider = (props) => {
+  const [dropdownAdmin, setDropdownAdmin] = useState(false);
+
+  return (
+    <DropdownAdminContext.Provider value={[dropdownAdmin, setDropdownAdmin]}>
+      {props.children}
+    </DropdownAdminContext.Provider>
+  )
+}

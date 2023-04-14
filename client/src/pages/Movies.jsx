@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../assets/css/header.css'
 import headerwp from '../assets/images/moviess/movies.png'
 import headertext from '../assets/images/moviess/moviestext.png'
 import FakeDataFinal from '../components/FakeDataFinal'
 import  { Link } from "react-router-dom"
+import { API, setAuthToken} from "../config/Api"
 
 function Movies() {
+  // Fetching category data
+  const getMovies = async () => {
+    try {
+      const response = await API.get('/categories')
+      setCategories(response.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getMovies()
+  }, [])
+
+
   return (
     <div className="headerwp items-center relative bg-black">
       <img className="headerrr" src={headerwp} />
@@ -18,9 +34,9 @@ function Movies() {
         </div>
         <Link to={"/moviesdetail/16"}><a className="bg-red-700 py-3 px-9 font-semibold">WATCH NOW!</a></Link>
       </div>
-      <div className="card-list bg-black pb-20">
+      <div className="card-list black pb-20">
         <h3 className="mx-7 pt-6 font-semibold">Movies</h3>
-        <div className="flex flex-wrap justify-between mx-12 mt-4">
+        <div className="flex flex-wrap mx-12 mt-4 gap-6">
 
           {FakeDataFinal.slice(12, 24).map((item) => (
             <div className="card__custom p-2 w-[15%]">
@@ -30,7 +46,7 @@ function Movies() {
             </div>
           ))}
 
-      </div>
+        </div>
       </div>
     </div>
   )

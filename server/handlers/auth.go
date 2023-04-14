@@ -43,13 +43,16 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
+	roleDefault := "User"
+
 	user := models.User{
-		FullName: request.FullName,
-		Email:    request.Email,
-		Password: password,
-		Gender: request.Gender,
-		Phone: request.Phone,
-		Address: request.Address,
+		FullName:  request.FullName,
+		Email:     request.Email,
+		Password:  password,
+		Gender:    request.Gender,
+		Role:      roleDefault,
+		Phone:     request.Phone,
+		Address:   request.Address,
 		Subscribe: request.Subscribe,
 	}
 
@@ -119,6 +122,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 	loginResponse := authdto.LoginResponse{
 		Email: user.Email,
 		Token: token,
+		Role:  user.Role,
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: loginResponse})

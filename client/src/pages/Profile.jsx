@@ -9,11 +9,15 @@ import addressLogo from '../assets/images/icons/address.png'
 
 
 function Profile() {
-
-  const datalocal = localStorage.getItem("dumblogin")
-  const dumblogin = JSON.parse(datalocal)
-  console.log(dumblogin)
-  console.log("Ini email dari datalocal", dumblogin.email)
+  
+  const dumblogin = {
+    fullname: "Rahman",
+    email: "rahman@gmail.com",
+    status: "active",
+    gender: "male",
+    phone: "123",
+    address: "cianjur",
+  }
 
   return (
     <div className="bg-black profile__custom pb-[200px] pt-[50px]">

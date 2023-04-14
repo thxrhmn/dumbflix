@@ -37,11 +37,12 @@ function Film() {
       </div>
 
       <div className="card-list bg-black pb-20">
+      {/* <div className="card-list bg-black pb-20"> */}
 
         {selectedValue ? (
           <>
             <h3 className="mx-7 pt-6 font-semibold">Movies</h3>
-            <div className="flex flex-wrap justify-between mx-12 mt-4">
+            <div className="flex flex-wrap gap-6 mx-12 mt-4">
               {FakeDataFinal.slice(12, 24).map((item) => (
                 <div className="card__custom p-2 w-[15%]">
                   <Link to={`/moviesdetail/${item.id}`}><img src={item.image} /></Link>
@@ -54,7 +55,7 @@ function Film() {
         ) : (
           <>
             <h3 className="mx-7 pt-6 font-semibold">TV Series</h3>
-            <div className="flex flex-wrap justify-between mx-12 mt-4">
+            <div className="flex flex-wrap gap-6 mx-12 mt-4">
               {FakeDataFinal.slice(0, 12).map((item) => (
                 <div className="card__custom p-2 w-[15%]">
                   <Link to={`/moviesdetail/${item.id}`}><img src={item.image} /></Link>

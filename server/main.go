@@ -12,7 +12,17 @@ import (
 )
 
 func main() {
+	// env
+	errEnv := godotenv.Load()
+	if errEnv != nil {
+		panic("Failed to load env file")
+	}
+
 	e := echo.New()
+	
+	mysql.DatabaseInit()
+	database.RunMigration()
+
 
 	// CORS agar bisa akses backend
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
@@ -20,15 +30,6 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.POST, echo.PATCH, echo.DELETE}, // mengijinkan method apa aja yg bisa digunakan
 		AllowHeaders: []string{"X-Requested-With", "Content-Type", "Authorization"}, // mengijinkan headers apa aja yg bisa digunakan
 	}))
-
-	// env
-	errEnv := godotenv.Load()
-	if errEnv != nil {
-		panic("Failed to load env file")
-	}
-
-	mysql.DatabaseInit()
-	database.RunMigration()
 
 	routes.RouteInit(e.Group("/api/v1"))
 

@@ -8,7 +8,7 @@ import Register from '../auth/Register'
 import { ModalLoginContext } from '../context/ModalLoginContext'
 import { ModalRegisterContext } from '../context/ModalRegisterContext'
 import { UserContext } from "../context/UserContext"
-import { DropdownContext } from '../context/DropdownContext'
+import { DropdownAdminContext, DropdownContext } from '../context/DropdownContext'
 
 function Navbar() {
   // from context
@@ -16,7 +16,7 @@ function Navbar() {
   const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
   const [modalRegister, setModalRegister] = useContext(ModalRegisterContext)
   const [dropdown, setDropdown] = useContext(DropdownContext)
-
+  const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
 
   // show login modal
   const handleShowLoginModal = () => {
@@ -39,7 +39,13 @@ function Navbar() {
   }
 
   // check when user login
-  const datadumblogin = localStorage.getItem("dumblogin")
+  const datadumblogin = localStorage.getItem("role")
+
+  if(datadumblogin == "Admin"){
+    setDropdownAdmin(true)
+  } else if(datadumblogin == "User"){
+    setDropdown(true)
+  }
 
   return (
     <>
@@ -66,7 +72,7 @@ function Navbar() {
           <ul className="flex justify-end">
 
             {datadumblogin ? (
-              <div onMouseOver={showDropdown} onMouseLeave={closeDropdown} className="flex flex-end float-right items-center">
+              <div onMouseOver={showDropdown} className="flex flex-end float-right items-center">
                 <img className="w-10 h-10 object-cover border-white border-solid border-2 rounded-full" src="https://avatars.githubusercontent.com/u/123728862?v=4" alt="" />
               </div>
             ): (
@@ -82,7 +88,10 @@ function Navbar() {
         {dropdown ? (
           <DropdownUser />
         ): null}
-        {/* <DropdownAdmin /> */}
+
+        {dropdownAdmin ? (
+          <DropdownAdmin/>
+        ): null}
 
         {modalLogin ? <Login /> : null }
         {modalRegister ? <Register /> : null }

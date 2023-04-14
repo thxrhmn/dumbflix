@@ -11,7 +11,7 @@ function Home() {
 
       <div className="card-list bg-black pb-20">
         <h3 className="mx-7 pt-6 font-semibold">TV Series</h3>
-        <div className="flex flex-wrap justify-between mx-12 mt-4">
+        <div className="flex flex-wrap mx-12 mt-4 gap-6">
           {FakeDataFinal.slice(0, 6).map((item) => (
             <div className="card__custom p-2 w-[15%]">
                <Link to={`/moviesdetail/${item.id}`}><img src={item.image}/></Link>
@@ -22,7 +22,7 @@ function Home() {
         </div>
 
         <h3 className="mx-7 pt-6 font-semibold">Movies</h3>
-        <div className="flex flex-wrap justify-between mx-12 mt-4">
+        <div className="flex flex-wrap mx-12 mt-4 gap-6">
           {FakeDataFinal.slice(12, 18).map((item) => (
             <div className="card__custom p-2 w-[15%]">
               <Link to={`/moviesdetail/${item.id}`}><img src={item.image} /></Link>

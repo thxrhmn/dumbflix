@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import userLogo from '../assets/images/icons/avatar.png'
 import payLogo from '../assets/images/icons/pay.png'
 import logoutLogo from '../assets/images/icons/logout.png'
 import filmLogo from '../assets/images/icons/film.png'
 import { useNavigate, Link } from 'react-router-dom'
+import { DropdownAdminContext, DropdownContext } from '../context/DropdownContext'
 
 export function DropdownUser() {
   // usenavigate untuk redirect
   const navigate = useNavigate()
 
+  const [dropdown, setDropdown] = useContext(DropdownContext)
+
   function logoutUser() {
-    localStorage.removeItem("dumblogin")
+    localStorage.removeItem("role")
+    localStorage.removeItem("token")
+    setDropdown(!dropdown)
     navigate("/")
   }
 
@@ -44,8 +49,13 @@ export function DropdownAdmin(){
   // usenavigate untuk redirect
   const navigate = useNavigate()
 
+  const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
+
   function logoutAdmin() {
-    localStorage.removeItem("dumblogin")
+    localStorage.removeItem("role")
+    localStorage.removeItem("token")
+    setDropdownAdmin(!DropdownAdmin)
+    navigate("/")
     navigate("/")
   }
 
