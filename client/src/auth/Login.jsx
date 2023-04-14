@@ -56,7 +56,7 @@ function Login() {
       })
 
       // set token
-      setAuthToken(localStorage.token)
+      // setAuthToken(localStorage.token)
       
       const alert = (
         <div className="text-green-600 font-semibold mb-3">Login Succes!</div>
@@ -71,7 +71,6 @@ function Login() {
           const timeoutId = setTimeout(() => {
             if (response.data.data.role == "Admin"){
               navigate("/film")
-              // localStorage.set
             } else if (response.data.data.role == "User"){
               navigate("/tvshows")
             }

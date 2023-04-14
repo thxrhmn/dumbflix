@@ -1,4 +1,5 @@
 import React, { useState, createContext, useReducer } from 'react';
+import { setAuthToken } from '../config/Api';
 
 
 export const UserContext = createContext();
@@ -15,6 +16,7 @@ const reducer = (state, action) => {
     // add case "USER_SUCCESS" here ..
     case 'LOGIN_SUCCESS':
       // Set localstorage item with key "token" here ...
+      localStorage.setItem("id", payload.id)
       localStorage.setItem("token", payload.token)
       localStorage.setItem("role", payload.role)
 
@@ -25,6 +27,7 @@ const reducer = (state, action) => {
     // add case "AUTH_ERROR" here ..
     case 'LOGOUT':
       // Remove localstorage item with key "token" here ...
+      localStorage.removeItem("id")
       localStorage.removeItem("token")
       localStorage.removeItem("role")
 

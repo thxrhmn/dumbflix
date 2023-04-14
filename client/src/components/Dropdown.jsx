@@ -13,6 +13,7 @@ export function DropdownUser() {
   const [dropdown, setDropdown] = useContext(DropdownContext)
 
   function logoutUser() {
+    localStorage.removeItem("id")
     localStorage.removeItem("role")
     localStorage.removeItem("token")
     setDropdown(!dropdown)
@@ -52,6 +53,7 @@ export function DropdownAdmin(){
   const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
 
   function logoutAdmin() {
+    localStorage.removeItem("id")
     localStorage.removeItem("role")
     localStorage.removeItem("token")
     setDropdownAdmin(!DropdownAdmin)

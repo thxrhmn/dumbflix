@@ -44,16 +44,18 @@ func (h *handlerAuth) Register(c echo.Context) error {
 	}
 
 	roleDefault := "User"
+	avatarDefault := "avatar.jpg"
 
 	user := models.User{
-		FullName:  request.FullName,
-		Email:     request.Email,
-		Password:  password,
-		Gender:    request.Gender,
-		Role:      roleDefault,
-		Phone:     request.Phone,
-		Address:   request.Address,
-		Subscribe: request.Subscribe,
+		AvatarProfile: avatarDefault,
+		FullName:      request.FullName,
+		Email:         request.Email,
+		Password:      password,
+		Gender:        request.Gender,
+		Role:          roleDefault,
+		Phone:         request.Phone,
+		Address:       request.Address,
+		Subscribe:     request.Subscribe,
 	}
 
 	data, err := h.AuthRepository.Register(user)
@@ -120,6 +122,7 @@ func (h *handlerAuth) Login(c echo.Context) error {
 
 	// RESPONSE BODY KETIKA LOGIN
 	loginResponse := authdto.LoginResponse{
+		ID:    user.ID,
 		Email: user.Email,
 		Token: token,
 		Role:  user.Role,

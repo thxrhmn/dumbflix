@@ -42,9 +42,9 @@ function Navbar() {
   const datadumblogin = localStorage.getItem("role")
 
   if(datadumblogin == "Admin"){
-    setDropdownAdmin(true)
+    // setDropdownAdmin(true)
   } else if(datadumblogin == "User"){
-    setDropdown(true)
+    // setDropdown(true)
   }
 
   return (
