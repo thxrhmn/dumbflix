@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import '../assets/css/header.css'
 import headerwp from '../assets/images/moviess/movies.png'
@@ -16,7 +16,6 @@ function Movies() {
   });
   console.log(films);
 
-
   return (
     <div className="headerwp items-center relative bg-black">
       <img className="headerrr" src={headerwp} />
@@ -33,13 +32,14 @@ function Movies() {
         <h3 className="mx-7 pt-6 font-semibold">Movies</h3>
         <div className="flex flex-wrap mx-12 mt-4 gap-6">
 
-          {films.slice(0, 24).map((item) => (
+          {films?.map((item) => (
             <div className="card__custom p-2 w-[15%]">
               <Link to={`/moviesdetail/${item.id}`}><img src={item.thumbnailfilm} /></Link>
               <Link to={`/moviesdetail/${item.id}`}><h1>{item.title}</h1></Link>
               <h3 className="text-slate-700">{item.year}</h3>
             </div>
           ))}
+          
           {/* {FakeDataFinal.slice(12, 24).map((item) => (
             <div className="card__custom p-2 w-[15%]">
               <Link to={`/moviesdetail/${item.id}`}><img src={item.image} /></Link>
