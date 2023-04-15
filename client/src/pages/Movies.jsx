@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from 'react'
+
 import '../assets/css/header.css'
 import headerwp from '../assets/images/moviess/movies.png'
 import headertext from '../assets/images/moviess/moviestext.png'
-import FakeDataFinal from '../components/FakeDataFinal'
+
 import  { Link } from "react-router-dom"
-import { API, setAuthToken} from "../config/Api"
+import { API} from "../config/Api"
+import { useQuery } from 'react-query'
 
 function Movies() {
-  // store movies
-  const [movies, setMovies] = useState([])
-
-  // Fetching category data
-  const getMovies = async () => {
-    try {
-      const response = await API.get('/films')
-      setMovies(response.data.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getMovies()
-  }, [])
-
-  
+  // fetching data using useQuery
+  let { data: films } = useQuery('filmsCache', async () => {
+    const response = await API.get('/films');
+    return response.data.data;
+  });
+  console.log(films);
 
 
   return (
@@ -43,7 +33,7 @@ function Movies() {
         <h3 className="mx-7 pt-6 font-semibold">Movies</h3>
         <div className="flex flex-wrap mx-12 mt-4 gap-6">
 
-          {movies.slice(0, 24).map((item) => (
+          {films.slice(0, 24).map((item) => (
             <div className="card__custom p-2 w-[15%]">
               <Link to={`/moviesdetail/${item.id}`}><img src={item.thumbnailfilm} /></Link>
               <Link to={`/moviesdetail/${item.id}`}><h1>{item.title}</h1></Link>

@@ -5,19 +5,24 @@ import logoutLogo from '../assets/images/icons/logout.png'
 import filmLogo from '../assets/images/icons/film.png'
 import { useNavigate, Link } from 'react-router-dom'
 import { DropdownAdminContext, DropdownContext } from '../context/DropdownContext'
+import { UserContext } from '../context/UserContext'
 
 export function DropdownUser() {
+  // from user context
+  const [_, dispatch] = useContext(UserContext)
+
   // usenavigate untuk redirect
   const navigate = useNavigate()
 
   const [dropdown, setDropdown] = useContext(DropdownContext)
 
   function logoutUser() {
-    localStorage.removeItem("id")
-    localStorage.removeItem("role")
-    localStorage.removeItem("token")
     setDropdown(!dropdown)
     navigate("/")
+
+    dispatch({
+      type: 'LOGOUT',
+    })
   }
 
   return (
@@ -47,18 +52,21 @@ export function DropdownUser() {
 }
 
 export function DropdownAdmin(){
+  // from user context
+  const [_, dispatch] = useContext(UserContext)
+
   // usenavigate untuk redirect
   const navigate = useNavigate()
 
   const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
 
   function logoutAdmin() {
-    localStorage.removeItem("id")
-    localStorage.removeItem("role")
-    localStorage.removeItem("token")
-    setDropdownAdmin(!DropdownAdmin)
+    setDropdownAdmin(!dropdownAdmin)
     navigate("/")
-    navigate("/")
+
+    dispatch({
+      type: 'LOGOUT',
+    })
   }
 
   return(

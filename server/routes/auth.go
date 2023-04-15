@@ -2,6 +2,7 @@ package routes
 
 import (
 	"week-02-task/handlers"
+	"week-02-task/pkg/middleware"
 	"week-02-task/pkg/mysql"
 	"week-02-task/repositories"
 
@@ -14,4 +15,5 @@ func AuthRoutes(e *echo.Group) {
 
 	e.POST("/register", h.Register)
 	e.POST("/login", h.Login)
+	e.GET("/check-auth", middleware.Auth(h.CheckAuth))
 }

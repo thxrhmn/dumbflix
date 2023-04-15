@@ -16,7 +16,7 @@ a world where people often prove more wicked than beast</p>
           <p className="">2019</p>
           <p className="py-2 px-5 ml-4 border-2 rounded-md border-solid">TV Series</p>
         </div>
-        <Link to={"/moviesdetail/1"}><a className="bg-red-700 py-3 px-9 font-semibold">WATCH NOW!</a></Link>
+        <Link to={"/moviesdetail/1"}><p className="bg-red-700 py-3 px-9 font-semibold w-[180px]">WATCH NOW!</p></Link>
       </div>
     </div>
   )

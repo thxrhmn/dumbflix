@@ -6,7 +6,6 @@ import { UserContext } from '../context/UserContext'
 import { useMutation } from 'react-query'
 import { API, setAuthToken } from '../config/Api'
 import { useNavigate } from 'react-router-dom'
-import { DropdownContext } from '../context/DropdownContext'
 
 function Login() {
   // from userContext
@@ -15,12 +14,9 @@ function Login() {
   // redirect page
   let navigate = useNavigate()
 
-  // handle dropdown user
-  const [dropdown, setDropdown] = useContext(DropdownContext)
-
   // modal login from context
   const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
-  const [modalRegister, setModalRegister] = useContext(ModalRegisterContext)
+  const [setModalRegister] = useContext(ModalRegisterContext)
 
   // notification when login successfull or not
   const [notif, setNotif] = useState(null)
@@ -60,41 +56,41 @@ function Login() {
       
       const alert = (
         <div className="text-green-600 font-semibold mb-3">Login Succes!</div>
-        )
-        setNotif(alert)
-        setValueLogin({
-          email: '',
-          password: '',
-        })
+      )
+      setNotif(alert)
+      setValueLogin({
+        email: '',
+        password: '',
+      })
 
-        function redirectPage(){
-          const timeoutId = setTimeout(() => {
-            if (response.data.data.role == "Admin"){
-              navigate("/film")
-            } else if (response.data.data.role == "User"){
-              navigate("/tvshows")
-            }
-            // setDropdown(!dropdown)
-          }, 2000)
-          return () => clearTimeout(timeoutId)
-        }
-        redirectPage()
-
-        function closeLoginModal(){
-          const timeoutId = setTimeout(() => {
-            setModalLogin(!modalLogin)
-          }, 1000)
-          return () => clearTimeout(timeoutId)
-        }
-        closeLoginModal()
-        
-      } catch (error) {
-        const alert = (
-          <div className="text-red-600 font-semibold mb-3">Email or password incorrect!</div>
-          )
-          setNotif(alert)
-          console.log("login failed : ", error)
+      function redirectPage(){
+        const timeoutId = setTimeout(() => {
+          if (response.data.data.role == "Admin"){
+            navigate("/film")
+          } else if (response.data.data.role == "User"){
+            navigate("/tvshows")
+          }
+          // setDropdown(!dropdown)
+        }, 2000)
+        return () => clearTimeout(timeoutId)
       }
+      redirectPage()
+
+      function closeLoginModal(){
+        const timeoutId = setTimeout(() => {
+          setModalLogin(!modalLogin)
+        }, 2000)
+        return () => clearTimeout(timeoutId)
+      }
+      closeLoginModal()
+        
+    } catch (error) {
+      const alert = (
+        <div className="text-red-600 font-semibold mb-3">Email or password incorrect!</div>
+      )
+      setNotif(alert)
+      console.log("login failed : ", error)
+    }
   })
 
   const closeLoginModalAndShowRegister = () => {

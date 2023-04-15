@@ -8,7 +8,7 @@ import { API } from "../../config/Api"
 function AddFilm() {
   const [categories, setCategories] = useState([]) //Store all category data
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // data yang akan dikirimkan ke backend
   const [form, setForm] = useState({
@@ -65,7 +65,7 @@ function AddFilm() {
       // Insert product data
       const response = await API.post('/film', formData, config)
       console.log("add product success : ", response)
-      // navigate('/')
+      navigate('/film')
     } catch (error) {
       console.log("add product failed : ", error)
       console.log(form)
@@ -83,7 +83,7 @@ function AddFilm() {
   }
 
   return (
-    <div className="bg-black w-screen py-5">
+    <div className="bg-black w-screen h-screen py-5">
 
       <form onSubmit={(e) => handleSubmit.mutate(e)}>
         <div className="mx-auto w-[620px] flex flex-col p-3 rounded-md">
@@ -107,7 +107,7 @@ function AddFilm() {
 
           <textarea onChange={handleChange} style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-4 rounded-[3px] border-white border-[1px] text-white" type="text" name="description" id="description" placeholder="Description" />
           
-          <div className="flex">
+          {/* <div className="flex">
             <input style={{background: "rgba(210, 210, 210, 0.25)"}} className="w-[70%] mr-3 p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="text" name="title-episode" id="title-episode" placeholder="Title Episode" />
             <input ref={fileInputRefAttach} hidden style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="file" name="attach2" id="attach2" />
             <div onClick={handleClickAttach} style={{background: "rgba(210, 210, 210, 0.25)"}}  className="cursor-pointer items-center flex w-[30%] justify-between p-2 mb-3 rounded-[3px] border-white border-[1px] text-white">
@@ -118,7 +118,7 @@ function AddFilm() {
           <input style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="text" name="link-film" id="link-film" placeholder="Link Film" />
           <div style={{background: "rgba(210, 210, 210, 0.25)"}}  className="cursor-pointer items-center flex w-[100%] justify-between mb-3 rounded-[3px] border-white border-[1px] text-white">
             <h3 className="text-center text-red-600 font-semibold size mx-auto text-4xl my-auto">+</h3>
-          </div>
+          </div> */}
 
           <div className="">
             <button type="submit" className="p-2 bg-red-700 rounded-md w-[200px] float-right text-white font-semibold">Save</button>
