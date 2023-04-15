@@ -21,7 +21,7 @@ export function PrivateRouteUser() {
   const [state] = useContext(UserContext);
 
   if (state.user.role === "Admin") {
-    return <Navigate to="/film" />
+    return <Navigate to="/dashboard" />
   }
   return <Outlet />
 }

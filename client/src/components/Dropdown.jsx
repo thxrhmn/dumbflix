@@ -75,8 +75,8 @@ export function DropdownAdmin(){
         <div style={{backgroundColor: "#1F1F1F"}} className="absolute z-50 right-[35px] top-[50px] rounded-md my-5 w-56 p-5 float-right bg-blue-800">
           <div className="flex my-3">
             <img src={filmLogo} alt="" />
-            <Link to={"/film"}>
-              <h1 className="ml-3 text-white font-semibold">Film</h1>
+            <Link to={"/dashboard"}>
+              <h1 className="ml-3 text-white font-semibold">Dashboard</h1>
             </Link>
           </div>
           <div className="flex my-3">

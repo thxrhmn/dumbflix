@@ -122,10 +122,11 @@ func (h *handlerAuth) Login(c echo.Context) error {
 
 	// RESPONSE BODY KETIKA LOGIN
 	loginResponse := authdto.LoginResponse{
-		ID:    user.ID,
-		Email: user.Email,
-		Token: token,
-		Role:  user.Role,
+		ID:            user.ID,
+		AvatarProfile: user.AvatarProfile,
+		Email:         user.Email,
+		Token:         token,
+		Role:          user.Role,
 	}
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: loginResponse})
@@ -137,5 +138,5 @@ func (h *handlerAuth) CheckAuth(c echo.Context) error {
 
 	user, _ := h.AuthRepository.CheckAuth(int(userId))
 
-	return c.JSON(http.StatusOK, dto.SuccessResult{Code : http.StatusOK, Data: user})
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: user})
 }

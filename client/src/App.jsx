@@ -70,6 +70,8 @@ function App() {
     }
   }
 
+  
+
   return(
     <>
       {isLoading ? null : (
@@ -91,7 +93,7 @@ function App() {
               <Route element={<PrivateRouteAdmin/>} >
                 <Route path="/addfilm" element={<AddFilm />} />
                 <Route path="/addepisode" element={<AddEpisode />} />
-                <Route path="/film" element={<Film />} />
+                <Route path="/dashboard" element={<Film />} />
                 <Route path="/transaction" element={<Transaction />} />
               </Route>
             </Route>

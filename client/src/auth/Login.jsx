@@ -66,7 +66,7 @@ function Login() {
       function redirectPage(){
         const timeoutId = setTimeout(() => {
           if (response.data.data.role == "Admin"){
-            navigate("/film")
+            navigate("/dashboard")
           } else if (response.data.data.role == "User"){
             navigate("/tvshows")
           }
