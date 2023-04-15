@@ -12,9 +12,9 @@ import { DropdownAdminContext, DropdownContext } from '../context/DropdownContex
 
 function Navbar() {
   // from context
-  const [user, setUser] = useContext(UserContext)
   const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
   const [modalRegister, setModalRegister] = useContext(ModalRegisterContext)
+
   const [dropdown, setDropdown] = useContext(DropdownContext)
   const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
 
@@ -28,23 +28,15 @@ function Navbar() {
     setModalRegister(!modalRegister)
   } 
 
-  // when hover show dropdown
-  const showDropdown = () => {
-    setDropdown(true)
-  }
+  // check role when user/admin login
+  const checkRole = localStorage.getItem("role")
 
-  // when hover show dropdown
-  const closeDropdown = () => {
-    setDropdown(false)
-  }
-
-  // check when user login
-  const datadumblogin = localStorage.getItem("role")
-
-  if(datadumblogin == "Admin"){
-    // setDropdownAdmin(true)
-  } else if(datadumblogin == "User"){
-    // setDropdown(true)
+  function showAndCloseDropdown() {
+    if(checkRole == "Admin"){
+      setDropdownAdmin(!dropdownAdmin)
+    } else if(checkRole == "User"){
+      setDropdown(!dropdown)
+    }
   }
 
   return (
@@ -71,8 +63,8 @@ function Navbar() {
         <div className="register-login pr-9 w-[30%]">
           <ul className="flex justify-end">
 
-            {datadumblogin ? (
-              <div onMouseOver={showDropdown} className="flex flex-end float-right items-center">
+            {checkRole ? (
+              <div onClick={showAndCloseDropdown} className="flex flex-end float-right items-center">
                 <img className="w-10 h-10 object-cover border-white border-solid border-2 rounded-full" src="https://avatars.githubusercontent.com/u/123728862?v=4" alt="" />
               </div>
             ): (
@@ -85,13 +77,8 @@ function Navbar() {
           </ul>
         </div>
               
-        {dropdown ? (
-          <DropdownUser />
-        ): null}
-
-        {dropdownAdmin ? (
-          <DropdownAdmin/>
-        ): null}
+        {dropdown ? <DropdownUser />: null}
+        {dropdownAdmin ? <DropdownAdmin/>: null}
 
         {modalLogin ? <Login /> : null }
         {modalRegister ? <Register /> : null }

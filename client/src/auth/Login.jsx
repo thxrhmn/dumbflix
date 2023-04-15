@@ -15,7 +15,7 @@ function Login() {
   // redirect page
   let navigate = useNavigate()
 
-  // handle dropdown
+  // handle dropdown user
   const [dropdown, setDropdown] = useContext(DropdownContext)
 
   // modal login from context
@@ -55,8 +55,8 @@ function Login() {
         payload: response.data.data,
       })
 
-      // set token
-      // setAuthToken(localStorage.token)
+      // set authorization token header
+      setAuthToken(localStorage.token)
       
       const alert = (
         <div className="text-green-600 font-semibold mb-3">Login Succes!</div>
