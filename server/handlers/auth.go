@@ -63,7 +63,6 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 
-	// =====================================================================
 	//generate token
 	claims := jwt.MapClaims{}
 	claims["id"] = data.ID
@@ -75,12 +74,11 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusUnauthorized)
 	}
 
-	// RESPONSE BODY KETIKA LOGIN
+	// RESPONSE BODY KETIKA REGISTER
 	registerResponse := authdto.RegisterResponse{
 		Email: data.Email,
 		Token: token,
 	}
-	// =====================================================================
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: registerResponse})
 }

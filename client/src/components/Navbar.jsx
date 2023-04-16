@@ -32,6 +32,7 @@ function Navbar() {
     setModalRegister(!modalRegister)
   } 
 
+  // dropdown by role
   function showAndCloseDropdown() {
     if(state.user.role == "Admin"){
       setDropdownAdmin(!dropdownAdmin)
@@ -40,6 +41,7 @@ function Navbar() {
     }
   }
 
+  // avatar image
   const avatarimage = `http://localhost:5000/uploads/${state.user.avatarprofile}`
 
   return (
@@ -66,11 +68,11 @@ function Navbar() {
           </div>
         )}
 
-        {state.user.role == "Admin" ? null : (
+        {state.user.role !== "Admin" ? (
           <div className="logo py-3 mr-75 w-[60%] flex justify-center">
             <Link to={"/"}><img src={logos}/></Link>
           </div>
-        )}
+        ): null }
         
         <div className="register-login pr-9 w-[30%]">
           <ul className="flex justify-end">

@@ -15,19 +15,17 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import { PrivateRouteLogin, PrivateRouteUser, PrivateRouteAdmin } from "./auth/PrivateRoute"
 
 import React, { useContext, useState, useEffect } from "react"
-import { UserContext, UserContextProvider } from './context/UserContext'
+import { UserContext } from './context/UserContext'
 
 import { API, setAuthToken } from "./config/Api"
-import { ModalLoginContext } from './context/ModalLoginContext'
 import NotFound from './components/NotFound'
+import AddCategory from './pages/admin/AddCategory'
 
 function App() {
-  let navigate = useNavigate()
-
-  const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
-
   const [state, dispatch] = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true)
+
+  let navigate = useNavigate()
 
   useEffect(() =>{
     // Redirect Auth but just when isLoading is false
@@ -70,7 +68,6 @@ function App() {
     }
   }
 
-  
 
   return(
     <>
@@ -82,16 +79,18 @@ function App() {
             <Route path="*" element={<NotFound />} />
 
             <Route element={<PrivateRouteLogin />} >
+              <Route path="/moviesdetail/:id" element={<MoviesDetail />} />
+              
               <Route element={<PrivateRouteUser/>} >
                 <Route path="/tvshows" element={<Tvshows />} />  
                 <Route path="/movies" element={<Movies />} />  
-                <Route path="/moviesdetail/:id" element={<MoviesDetail />} />
                 <Route path="/profile" element={<Profile />} />  
                 <Route path="/payment" element={<Payment />} />
               </Route>
 
               <Route element={<PrivateRouteAdmin/>} >
                 <Route path="/addfilm" element={<AddFilm />} />
+                <Route path="/addcategory" element={<AddCategory />} />
                 <Route path="/addepisode" element={<AddEpisode />} />
                 <Route path="/dashboard" element={<Film />} />
                 <Route path="/transaction" element={<Transaction />} />

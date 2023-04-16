@@ -65,7 +65,7 @@ function AddFilm() {
       // Insert product data
       const response = await API.post('/film', formData, config)
       console.log("add product success : ", response)
-      navigate('/film')
+      navigate('/dashboard')
     } catch (error) {
       console.log("add product failed : ", error)
       console.log(form)
@@ -100,9 +100,11 @@ function AddFilm() {
 
           <select onChange={handleChange} name="category_id" id="category_id" style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] text-white border-white border-[1px] ">
             <option disabled hidden value="">Categories</option>
-            {categories.map((item) => (
+
+            {categories?.map((item) => (
               <option style={{background: "rgba(210, 210, 210, 0.25)"}} className="text-black" name={item.id} value={item.id}>{item.name}</option>
             ))}
+            
           </select>
 
           <textarea onChange={handleChange} style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-4 rounded-[3px] border-white border-[1px] text-white" type="text" name="description" id="description" placeholder="Description" />

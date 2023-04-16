@@ -70,7 +70,6 @@ function Login() {
           } else if (response.data.data.role == "User"){
             navigate("/tvshows")
           }
-          // setDropdown(!dropdown)
         }, 2000)
         return () => clearTimeout(timeoutId)
       }

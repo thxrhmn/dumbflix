@@ -6,8 +6,20 @@ import { API } from "../../config/Api"
 function AddEpisode() {
   const [addFilm, setAddfilm] = useState(1)
 
-  function incrementAddFilm() {
-    setAddfilm(addFilm + 1)
+  // data yang akan dikirimkan ke backend
+  const [form, setForm] = useState({
+    title: '',
+    thumbnailfilm: '',
+    linkfilm: '',
+  }) //Store product data
+
+  // Handle change data on form
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        e.target.type === 'file' ? e.target.files : e.target.value,
+    })
   }
 
   const fileInputRefAttach = useRef(null);

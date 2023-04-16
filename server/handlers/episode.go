@@ -78,33 +78,6 @@ func (h *handlerEpisode) GetEpisode(c echo.Context) error {
 }
 
 func (h *handlerEpisode) CreateEpisode(c echo.Context) error {
-	// request := new(episodedto.CreateEpisodeRequest)
-	// if err := c.Bind(request); err != nil {
-	// 	return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
-	// }
-
-	// validation := validator.New()
-	// err := validation.Struct(request)
-	// if err != nil {
-	// 	return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
-	// }
-
-	// // data form pattern submit to pattern entity db user
-	// episode := models.Episode{
-	// 	Title:         request.Title,
-	// 	ThumbnailFilm: request.ThumbnailFilm,
-	// 	LinkFilm:      request.LinkFilm,
-	// 	Film:          request.Film,
-	// 	FilmID:        request.FilmID,
-	// }
-
-	// data, err := h.EpisodeRepository.CreateEpisode(episode)
-	// if err != nil {
-	// 	return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
-	// }
-
-	// return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
-	// get the datafile here
 	dataFile := c.Get("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
 
