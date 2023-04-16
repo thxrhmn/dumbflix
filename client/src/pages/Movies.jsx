@@ -1,7 +1,7 @@
 import React from 'react'
 
-import headerwp from '../assets/images/moviess/movies.png'
-import headertext from '../assets/images/moviess/moviestext.png'
+import headerwp from '../assets/images/movies/movies.png'
+import headertext from '../assets/images/movies/moviestext.png'
 
 import  { Link } from "react-router-dom"
 import { API} from "../config/Api"

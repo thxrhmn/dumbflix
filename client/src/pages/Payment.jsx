@@ -1,14 +1,6 @@
-import React, { useRef, useState }  from 'react'
-import Attach from "../assets/images/icons/attach.png"
+import React from 'react'
 
 function Premium() {
-  const fileInputRef = useRef(null);
-
-  const handleClick = () => {
-    fileInputRef.current.click();
-  };
-
-
   return (
     <div className="bg-black h-[600px] pt-28">
       <div className="mx-auto w-[550px] justify-center">
@@ -21,13 +13,6 @@ function Premium() {
           <p className="text-red-700 font-semibold">DUMBFLIX</p><p className="font-semibold text-white ml-2"> : 0981312323</p>
         </div>
         <form className="flex flex-col w-[100%]">
-          {/* <input className="border-2 rounded-md p-2 mb-4" type="number" id="number" placeholder="Input Your Id Number" />
-          <input ref={fileInputRef} hidden className="border-2 rounded-md p-2 mb-7" type="file" id="file" placeholder="Attache proop of transfer" />
-          <div onClick={handleClick} className="bg-white flex justify-between p-2 mb-10 rounded-md cursor-pointer">
-            <h1 className="text-red-700 font-semibold items-center">Attache proof of transfer</h1>
-            <img src={Attach} alt="" />
-          </div> */}
-          {/* <input type='checkbox' className="bg-yellow-300" /> */}
           <select hidden>
             <option value="1-month">1-month</option>
             <option value="3-month">3-month</option>
