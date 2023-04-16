@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '../assets/css/header.css'
 import headerwp from '../assets/images/moviess/movies.png'
 import headertext from '../assets/images/moviess/moviestext.png'
 
@@ -21,7 +20,7 @@ function Movies() {
     <div className="headerwp items-center relative bg-black">
       <img className="headerrr" src={headerwp} />
 
-      <div className="header mb-9 absolute top-40 left-20 w-[500px]">
+      <div style={{color: 'white'}} className="mb-9 absolute top-40 left-20 w-[500px]">
         <img src={headertext} />
         <p className="w-25 mt-3">In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.</p>
         <div className="flex mb-11 my-4 items-center">

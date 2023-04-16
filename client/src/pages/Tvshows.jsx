@@ -1,5 +1,4 @@
 import React from 'react'
-import '../assets/css/header.css'
 import headerwp from '../assets/images/tvshows/tvshows.png'
 import headertext from '../assets/images/tvshows/tvshowstext.png'
 
@@ -16,13 +15,12 @@ function Tvshows() {
   });
 
   const categoryTvshows = films?.filter((film) => film.category_id === 1)
-  console.log(categoryTvshows)
 
   return (
-    <div className="headerwp items-center relative bg-black">
+    <div className="items-center relative bg-black">
       <img className="headerrr" src={headerwp} />
 
-      <div className="header mb-9 absolute top-40 left-20 w-[500px]">
+      <div style={{color: 'white'}} className="mb-9 absolute top-40 left-20 w-[500px]">
         <img src={headertext} />
         <p className="w-25 mt-3">Money Heist is a crime drama on Netflix - originally called La Casa de Papel. Money Heist season 3 has just been released by the streaming service. The plot reads: "Eight thieves take hostages and lock themselves in the Royal Mint of Spain as a criminal mastermind manipulates the police to carry out his plan."</p>
         <div className="flex mb-11 my-4 items-center">

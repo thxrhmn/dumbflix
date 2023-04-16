@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from '../components/Header'
-import "../assets/css/cardlist.css";
 
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -19,7 +18,7 @@ function Home() {
     <>
       <Header />
 
-      <div className="card-list bg-black pb-20">
+      <div style={{color: 'white'}} className="bg-black pb-20">
         <h3 className="mx-7 pt-6 font-semibold">TV Series</h3>
 
         <div className="flex flex-wrap mx-12 mt-4 gap-6">

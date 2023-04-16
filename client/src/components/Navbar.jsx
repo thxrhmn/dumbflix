@@ -1,5 +1,4 @@
-import React, {useState, useContext } from 'react'
-import '../assets/css/navbar.css'
+import React, {useContext } from 'react'
 import logos from '../assets/images/dumbflix.png'
 import { Link } from 'react-router-dom'
 import { DropdownAdmin, DropdownUser } from './Dropdown'
@@ -11,7 +10,6 @@ import { DropdownAdminContext, DropdownContext } from '../context/DropdownContex
 import { UserContext } from "../context/UserContext"
 
 function Navbar() {
-  // from context
   const [state] = useContext(UserContext);
 
   const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
@@ -20,13 +18,10 @@ function Navbar() {
   const [dropdown, setDropdown] = useContext(DropdownContext)
   const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
 
-
-  // show login modal
   const handleShowLoginModal = () => {
     setModalLogin(!modalLogin)
   } 
 
-  // show modal register
   const handleShowRegister = () => {
     setModalRegister(!modalRegister)
   } 

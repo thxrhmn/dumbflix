@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../assets/css/header.css";
 import { useMutation, useQuery } from "react-query";
 import { API } from "../config/Api";
 
@@ -20,7 +19,7 @@ function Film() {
     }
   }
 
-  // Fetching category data
+  // fetching category data
   const getCategories = async () => {
     try {
       const response = await API.get('/categories')
@@ -65,7 +64,7 @@ function Film() {
   const categoryMovies = films?.filter((film) => film.category_id === 1)
 
   return (
-    <div className="headerwp items-center relative bg-black h-screen">
+    <div className="items-center relative bg-black h-screen">
       <div className="flex ml-7 pt-7 items-center w-[1260px]">
 
         <div className="flex w-[650px]">

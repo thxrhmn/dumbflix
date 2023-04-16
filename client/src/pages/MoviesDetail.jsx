@@ -1,5 +1,4 @@
 import React from 'react'
-import '../assets/css/moviesdetail.css'
 import moviesDetail3 from '../assets/images/moviesdetail/moneyheist-3.png'
 import { Link, useParams } from 'react-router-dom'
 import FakeDataFinal from "../components/FakeDataFinal"
@@ -17,11 +16,10 @@ function MoviesDetail() {
   const data = FakeDataFinal.find((item) => item.id === parseInt(id)) 
 
   return (
-    <div className="movies__detail detail-movies bg-black">
+    <div style={{color: 'white'}} className="detail-movies bg-black">
      <div className="bg-black">
        <iframe width="800" height="400" className="mx-auto" src={data?.trailer} frameborder="0"></iframe>
      </div>
-
 
      <div className="flex p-5 justify-center items-center">
        <div className="w-[50%] flex items-center">

@@ -7,20 +7,15 @@ import { API, setAuthToken } from '../config/Api'
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
-  // from userContext
   const [_, dispatch] = useContext(UserContext);
-
-  // redirect page
-  let navigate = useNavigate()
-
-  // modal login from context
   const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
   const [setModalRegister] = useContext(ModalRegisterContext)
 
-  // notification when login successfull or not
+  let navigate = useNavigate()
+
+  // notification when login success or not
   const [notif, setNotif] = useState(null)
 
-  // data yang akan dikirim ke backend
   const [valueLogin, setValueLogin] = useState({
     email: "",
     password: ""
@@ -35,7 +30,7 @@ function Login() {
     })
   }
 
-  // send valueLogin data to backend using useMutation
+  // send data to backend using useMutation
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault()
@@ -44,7 +39,7 @@ function Login() {
   
       console.log("Login success : ", response.data.data)
 
-      // Send data to useContext
+      // send data to useContext
       dispatch({
         type: 'LOGIN_SUCCESS',
         payload: response.data.data,

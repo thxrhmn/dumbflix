@@ -1,4 +1,3 @@
-import '../assets/css/profile.css'
 import avatarLogo from '../assets/images/icons/avatar.png'
 import emailLogo from '../assets/images/icons/email.png'
 import phoneLogo from '../assets/images/icons/phone.png'
@@ -11,7 +10,6 @@ import { API } from '../config/Api'
 import { UserContext } from '../context/UserContext'
 
 function Profile() {
-  // usecontext
   const [state] = useContext(UserContext)
 
   const [profile, setProfile] = useState({})
@@ -30,9 +28,8 @@ function Profile() {
     getProfileData()
   }, [])
 
-
   return (
-    <div className="bg-black profile__custom pb-[200px] pt-[50px]">
+    <div style={{color: 'white'}} className="bg-black pb-[200px] pt-[50px]">
       <div style={{backgroundColor: "#1F1F1F"}} className="w-[700px] h-[450px] mx-auto rounded-md flex justify-between overflow-hidden items-center">
         <div className=" w-[50%]">
           <h1 className="font-semibold ml-4 my-6">Personal Info</h1>

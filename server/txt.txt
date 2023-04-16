@@ -1,3 +1,15 @@
+REPO: 
+https://github.com/adhxabre/integration-b45/
+https://github.com/adhxabre/payment-b45/
+https://github.com/DumbwaysDotId/integration-reactjs-golang-echo-template/
+https://github.com/DumbwaysDotId/payment-gateway-reactjs-golang-echo-template/
+
+
+TODO:
+REGISTER DONE
+LOGIN IS DONE
+
+
 STEP BY STEP:
 go mod init namaproject
 go get github.com/labstack/echo/v4

@@ -6,11 +6,10 @@ import { useMutation } from 'react-query'
 import { API } from "../../config/Api"
 
 function AddFilm() {
-  const [categories, setCategories] = useState([]) //Store all category data
+  const [categories, setCategories] = useState([]) // store all category data
 
   const navigate = useNavigate()
 
-  // data yang akan dikirimkan ke backend
   const [form, setForm] = useState({
     title: '',
     thumbnailfilm: '',
@@ -19,7 +18,7 @@ function AddFilm() {
     category_id: ''
   }) //Store product data
 
-  // Fetching category data
+  // fetching category data
   const getCategories = async () => {
     try {
       const response = await API.get('/categories')
@@ -29,7 +28,7 @@ function AddFilm() {
     }
   }
 
-  // Handle change data on form
+  // handle change data on form
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -37,17 +36,17 @@ function AddFilm() {
         e.target.type === 'file' ? e.target.files : e.target.value,
     })
 
-    // Create image url for preview
-    if (e.target.type === 'file') {
-      let url = URL.createObjectURL(e.target.files[0])
-    }
+    // // create image url for preview
+    // if (e.target.type === 'file') {
+    //   let url = URL.createObjectURL(e.target.files[0])
+    // }
   }
 
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault()
 
-      // Configuration
+      // configuration
       const config = {
         headers: {
           'Content-type': 'multipart/form-data',
@@ -62,7 +61,7 @@ function AddFilm() {
       formData.set('description', form.description)
       formData.set('category_id', Number(form.category_id))
 
-      // Insert film data
+      // insert film data
       const response = await API.post('/film', formData, config)
       console.log("add film success : ", response)
       navigate('/dashboard')

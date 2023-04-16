@@ -4,14 +4,12 @@ import { useMutation } from 'react-query'
 import { API } from "../config/Api"
 
 function Register() {
-  // from context
   const [modalLogin, setModalLogin] = useContext(ModalLoginContext)
   const [modalRegister, setModalRegister] = useContext(ModalRegisterContext)
 
-  // notification when login is successful or not
+  // notification when login is success or not
   const [notif, setNotif] = useState(null);
   
-  // data nantinya dikirimkan ke backend
   const [valueRegister, setValueRegister] = useState({
     email: "",
     password: "",
@@ -23,7 +21,6 @@ function Register() {
 
   const { email, password, fullname, gender, phone, address } = valueRegister
 
-  // onchange = mendeteksi keyboard ketika ditekan
   const handleOnChangeRegister = (e) => {
     setValueRegister({
       ...valueRegister,
@@ -31,7 +28,7 @@ function Register() {
     })
   }
 
-  // insert data using useMutation | mengirimkan data form ke backend
+  // insert data using useMutation
   const handleSubmit = useMutation(async (e) => {
     try {
       e.preventDefault()
@@ -63,11 +60,6 @@ function Register() {
     }
   })
   
-  const closeRegisterModal = () => {
-    // setModalRegister(!modalRegister)
-    // setModalLogin(!modalLogin)
-  }
-
   const closeRegisterAndShowLoginModal = () => {
     setModalRegister(false)
     setModalLogin(true)
@@ -89,7 +81,7 @@ function Register() {
           <input onChange={handleOnChangeRegister} name="phone" value={phone}  style={{background: "rgba(210, 210, 210, 0.25)"}} className="border-2 rounded-md p-2 mb-4 text-white" type="number" id="phone" placeholder="Phone" />
           <input onChange={handleOnChangeRegister} name="address" value={address} style={{background: "rgba(210, 210, 210, 0.25)"}} className="border-2 rounded-md p-2 mb-7 text-white" type="text" id="address" placeholder="Address" />
           {notif && notif}
-          <button onClick={closeRegisterModal} className="bg-white font-semibold p-3 rounded-md text-red-700 mb-3" type="submit">Register</button>
+          <button className="bg-white font-semibold p-3 rounded-md text-red-700 mb-3" type="submit">Register</button>
           <p className="text-white">Already have an account ? <a onClick={closeRegisterAndShowLoginModal} className="font-semibold cursor-pointer">Click Here</a></p>
         </form>
       </div>

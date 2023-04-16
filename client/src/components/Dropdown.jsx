@@ -8,13 +8,10 @@ import { DropdownAdminContext, DropdownContext } from '../context/DropdownContex
 import { UserContext } from '../context/UserContext'
 
 export function DropdownUser() {
-  // from user context
   const [_, dispatch] = useContext(UserContext)
-
-  // usenavigate untuk redirect
-  const navigate = useNavigate()
-
   const [dropdown, setDropdown] = useContext(DropdownContext)
+
+  const navigate = useNavigate()
 
   function logoutUser() {
     setDropdown(!dropdown)
@@ -52,13 +49,10 @@ export function DropdownUser() {
 }
 
 export function DropdownAdmin(){
-  // from user context
   const [_, dispatch] = useContext(UserContext)
-
-  // usenavigate untuk redirect
-  const navigate = useNavigate()
-
   const [dropdownAdmin, setDropdownAdmin] = useContext(DropdownAdminContext)
+
+  const navigate = useNavigate()
 
   function logoutAdmin() {
     setDropdownAdmin(!dropdownAdmin)

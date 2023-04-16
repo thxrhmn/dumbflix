@@ -30,6 +30,7 @@ function AddCategory() {
       const response = await API.post('/category', formData)
       console.log("add category success : ", response)
       navigate('/dashboard')
+      
     } catch (error) {
       console.log("add category failed : ", error)
       console.log(form)

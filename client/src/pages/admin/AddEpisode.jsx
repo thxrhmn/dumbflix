@@ -7,15 +7,13 @@ import { useNavigate } from 'react-router-dom'
 function AddEpisode() {
   const navigate = useNavigate()
 
-  // data yang akan dikirimkan ke backend
   const [form, setForm] = useState({
     title: '',
     thumbnailfilm: '',
     linkfilm: '',
     film_id: '',
-  }) //Store product data
+  })
 
-  // Handle change data on form
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -28,21 +26,21 @@ function AddEpisode() {
     try {
       e.preventDefault()
 
-      // Configuration
+      // configuration
       const config = {
         headers: {
           'Content-type': 'multipart/form-data',
         },
       }
 
-      // Store data with FormData as object
+      // store data with FormData as object
       const formData = new FormData()
       formData.set('title', form.title)
       formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
       formData.set('linkfilm', form.linkfilm)
       formData.set('film_id', Number(form.film_id))
       
-      // Insert episode data
+      // insert episode data
       const response = await API.post('/episode', formData, config)
       console.log("add episode success : ", response)
       navigate('/dashboard')
