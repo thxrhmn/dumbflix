@@ -54,7 +54,7 @@ function AddFilm() {
         },
       }
 
-      // Store data with FormData as object
+      // store data with FormData as object
       const formData = new FormData()
       formData.set('title', form.title)
       formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
@@ -62,12 +62,12 @@ function AddFilm() {
       formData.set('description', form.description)
       formData.set('category_id', Number(form.category_id))
 
-      // Insert product data
+      // Insert film data
       const response = await API.post('/film', formData, config)
-      console.log("add product success : ", response)
+      console.log("add film success : ", response)
       navigate('/dashboard')
     } catch (error) {
-      console.log("add product failed : ", error)
+      console.log("add film failed : ", error)
       console.log(form)
     }
   })

@@ -6,8 +6,7 @@ import { UserContextProvider } from './context/UserContext';
 
 import { QueryClient, QueryClientProvider } from "react-query"
 
-import { ModalLoginProvider } from "./context/ModalLoginContext"
-import { ModalRegisterProvider } from "./context/ModalRegisterContext"
+import { ModalLoginProvider, ModalRegisterProvider } from "./context/ModalContext"
 import { DropdownProvider, DropdownAdminProvider } from "./context/DropdownContext"
 import { BrowserRouter as Router } from 'react-router-dom';
 

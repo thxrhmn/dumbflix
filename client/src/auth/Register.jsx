@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react'
-import { ModalLoginContext } from '../context/ModalLoginContext'
-import { ModalRegisterContext } from '../context/ModalRegisterContext'
+import { ModalLoginContext, ModalRegisterContext } from "../context/ModalContext"
 import { useMutation } from 'react-query'
 import { API } from "../config/Api"
 
