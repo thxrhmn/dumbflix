@@ -16,7 +16,7 @@ function AddFilm() {
     year: '',
     description: '',
     category_id: ''
-  }) //Store product data
+  }) //store product data
 
   // fetching category data
   const getCategories = async () => {

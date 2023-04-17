@@ -11,7 +11,7 @@ function Transaction() {
   const dataTransactions = [
     {
       no: 1,
-      user: "Kunyuk",
+      user: "Jhon",
       buktitf: "bukti bca.jpg",
       remainingActive: "26/ Hari",
       statususer: "Active",
@@ -35,7 +35,7 @@ function Transaction() {
     },
     {
       no: 4,
-      user: "Jacky",
+      user: "Asep",
       buktitf: "bni.jpg",
       remainingActive: "26/ Hari",
       statususer: "Active",
@@ -43,7 +43,7 @@ function Transaction() {
     },
     {
       no: 5,
-      user: "Udin petot",
+      user: "Udin",
       buktitf: "alfamidi-tf.jpg",
       remainingActive: "26/ Hari",
       statususer: "Non Active",
@@ -51,7 +51,7 @@ function Transaction() {
     },
     {
       no: 6,
-      user: "Hantu",
+      user: "Rendi",
       buktitf: "bukti bca.jpg",
       remainingActive: "26/ Hari",
       statususer: "Non Active",

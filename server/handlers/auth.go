@@ -44,7 +44,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 	}
 
 	roleDefault := "User"
-	avatarDefault := "avatar.jpg"
+	avatarDefault := "avatar.png"
 
 	user := models.User{
 		AvatarProfile: avatarDefault,
