@@ -13,7 +13,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-var path_file = "http://localhost:5000/uploads/"
+var path_file = "https://be.heck.eu.org/uploads/"
 
 type handlerFilm struct {
 	FilmRepository repositories.FilmRepository
