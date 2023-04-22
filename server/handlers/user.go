@@ -108,11 +108,7 @@ func (h *handler) UpdateUser(c echo.Context) error {
 		user.Phone = request.Phone
 	}
 
-	if request.Subscribe != false {
-		user.Subscribe = request.Subscribe
-	}
-
-	if request.Subscribe != true {
+	if request.Subscribe != "" {
 		user.Subscribe = request.Subscribe
 	}
 

@@ -9,7 +9,7 @@ type AuthRequest struct {
 	Role          string `json:"role" form:"role"`
 	Phone         string `json:"phone" form:"phone" validate:"required"`
 	Address       string `json:"address" form:"address" validate:"required"`
-	Subscribe     bool   `json:"subscribe" form:"subscribe"`
+	Subscribe     string `json:"subscribe" form:"subscribe"`
 }
 
 type LoginRequest struct {

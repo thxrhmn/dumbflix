@@ -45,6 +45,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 
 	roleDefault := "User"
 	avatarDefault := "avatar.png"
+	subscribeDefault := "false"
 
 	user := models.User{
 		AvatarProfile: avatarDefault,
@@ -55,7 +56,7 @@ func (h *handlerAuth) Register(c echo.Context) error {
 		Role:          roleDefault,
 		Phone:         request.Phone,
 		Address:       request.Address,
-		Subscribe:     request.Subscribe,
+		Subscribe:     subscribeDefault,
 	}
 
 	data, err := h.AuthRepository.Register(user)
