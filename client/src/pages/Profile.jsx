@@ -28,6 +28,9 @@ function Profile() {
     getProfileData()
   }, [])
 
+  // avatar image
+  const avatarImage = import.meta.env.VITE_REACT_APP_IMAGE_URL + profile.avatarprofile
+
   return (
     <div style={{color: 'white'}} className="bg-black pb-[200px] pt-[50px]">
       <div style={{backgroundColor: "#1F1F1F"}} className="w-[700px] h-[450px] mx-auto rounded-md flex justify-between overflow-hidden items-center">
@@ -78,7 +81,7 @@ function Profile() {
         </div>
         <div className="w-[40%] p-5">
           <div className="flex flex-col justify-center">
-            <img className="rounded-md" src={`http://localhost:5000/uploads/${profile.avatarprofile}`} alt="" />
+            <img className="rounded-md" src={avatarImage} alt="" />
             <div className="w-25 mt-5 mx-auto">
               <a className="bg-red-700 py-3 px-11 rounded-md">Change Photo Profile</a>
             </div>

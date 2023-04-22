@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 function Home() {
+  // console.log(import.meta.env.VITE_REACT_APP_BASE_URL)
+  // console.log(import.meta.env.VITE_REACT_APP_MIDTRANS_CLIENT_KEY)
+
   // fetching data using useQuery
   let { data: films } = useQuery('filmsCache', async () => {
     const response = await API.get('/films')

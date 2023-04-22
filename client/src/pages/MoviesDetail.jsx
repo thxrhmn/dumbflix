@@ -11,28 +11,35 @@ function MoviesDetail() {
   let { data: film } = useQuery('filmDetailChache', async () => {
     const response = await API.get(`/film/${id}`)
     return response.data.data
-  })  
-
-  const data = FakeDataFinal.find((item) => item.id === parseInt(id)) 
+  }) 
+  console.log(film) 
 
   return (
     <div style={{color: 'white'}} className="detail-movies bg-black">
      <div className="bg-black">
-       <iframe width="800" height="400" className="mx-auto" src={data?.trailer} frameborder="0"></iframe>
+       <iframe width="800" height="400" className="mx-auto" src={film?.linkfilm} frameborder="0"></iframe>
      </div>
 
      <div className="flex p-5 justify-center items-center">
-       <div className="w-[50%] flex items-center">
-         <div className="">
-           <img className="w-[600px]" src={film?.thumbnailfilm} alt="" />
+       <div className="w-[50%] flex">
+         <div className="bg-red-400 w-[30%]">
+           <img className="w-full" src={film?.thumbnailfilm} alt="" />
          </div>
-         <div className="description">
+         <div className="description w-[70%]">
            <h1 className="text-2xl font-bold ml-5">{film?.title}</h1>
            <div className="date flex mx-5 items-center my-3">
-             <h5 className="mr-3 text-gray-700 font-semibold">{film?.year}</h5>
-             <h5 className="text-white font-semibold py-2 px-5 ml-4 border-2 rounded-md border-solid">{film?.category.name}</h5>
+              <h5 className="mr-3 text-gray-700 font-semibold">{film?.year}</h5>
+              
+              {film?.category.name == "Tv Shows" && (
+               <Link to={"/tvshows"}> <h5 className="text-white font-semibold py-2 px-5 ml-4 border-2 rounded-md border-solid">{film?.category.name}</h5></Link>
+              )}
+
+              {film?.category.name == "Movies" && (
+               <Link to={"/movies"}> <h5 className="text-white font-semibold py-2 px-5 ml-4 border-2 rounded-md border-solid">{film?.category.name}</h5></Link>
+              )}
+
            </div>
-           <p className="mx-5 text-justify">Money Heist is a crime drama on Netflix - originally called La Casa de Papel. Money Heist season 3 has just been released by the streaming service. The plot reads: "Eight thieves take hostages and lock themselves in the Royal Mint of Spain as a criminal mastermind manipulates the police to carry out his plan."</p>
+           <p className="mx-5 text-justify">{film?.description}</p>
          </div>
        </div>
 

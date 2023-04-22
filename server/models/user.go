@@ -16,3 +16,19 @@ type User struct {
 	CreatedAt     time.Time `json:"created_at"`
 	UpdatedAt     time.Time `json:"updated_at"`
 }
+
+type UsersProfileResponse struct {
+	ID            int    `json:"id"`
+	AvatarProfile string `json:"avatarprofile"`
+	Fullname      string `json:"fullname"`
+	Email         string `json:"email"`
+	Gender        string `json:"gender"`
+	Role          string `json:"role"`
+	Phone         string `json:"phone"`
+	Address       string `json:"address"`
+	Subscribe     string `json:"subscribe"`
+}
+
+func (UsersProfileResponse) TableName() string {
+	return "users"
+}

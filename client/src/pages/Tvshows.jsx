@@ -14,6 +14,8 @@ function Tvshows() {
     return response.data.data;
   });
 
+  console.log(films)
+
   const categoryTvshows = films?.filter((film) => film.category_id === 1)
 
   return (

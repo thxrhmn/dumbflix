@@ -36,7 +36,7 @@ function Navbar() {
   }
 
   // avatar image
-  const avatarimage = `http://localhost:5000/uploads/${state.user.avatarprofile}`
+  const avatarimage = import.meta.env.VITE_REACT_APP_IMAGE_URL + state.user.avatarprofile
 
   return (
     <>
@@ -62,11 +62,11 @@ function Navbar() {
           </div>
         )}
 
-        {state.user.role !== "Admin" ? (
+        {state.user.role !== "Admin" && (
           <div className="logo py-3 mr-75 w-[60%] flex justify-center">
             <Link to={"/"}><img src={logos}/></Link>
           </div>
-        ): null }
+        )}
         
         <div className="register-login pr-9 w-[30%]">
           <ul className="flex justify-end">
@@ -82,12 +82,12 @@ function Navbar() {
             )}
           </ul>
         </div>
-              
-        {dropdown ? <DropdownUser />: null}
-        {dropdownAdmin ? <DropdownAdmin/>: null}
+        
+        {dropdown && <DropdownUser /> }
+        {dropdownAdmin && <DropdownAdmin/> }
 
-        {modalLogin ? <Login /> : null }
-        {modalRegister ? <Register /> : null }
+        {modalLogin && <Login /> }
+        {modalRegister && <Register /> }
 
       </div>
     </>

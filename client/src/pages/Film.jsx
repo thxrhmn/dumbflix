@@ -98,8 +98,8 @@ function Film() {
                       <Link to={`/moviesdetail/${item.id}`}>{item.title}</Link>
                       <h3 className="text-slate-700">{item.year}</h3>
                       <div className="flex justify-between mt-4">
-                        <button type="buton" className="bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Edit</button>
-                        <button onClick={handleDelete} type="buton" className="hover:bg-red-600 bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Delete</button>
+                        <button type="buton" className="hover:bg-white hover:text-red-700 bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Edit</button>
+                        <button onClick={handleDelete} type="buton" className="hover:bg-white hover:text-red-700 bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Delete</button>
                       </div>
                     </div>
                   ))}
@@ -116,8 +116,8 @@ function Film() {
                       <Link to={`/moviesdetail/${item.id}`}>{item.title}</Link>
                       <h3 className="text-slate-700">{item.year}</h3>
                       <div className="flex justify-between mt-4">
-                        <button type="buton" className="bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Edit</button>
-                        <button onClick={handleDelete} type="buton" className="bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Delete</button>
+                        <button type="buton" className="hover:bg-white hover:text-red-700 bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Edit</button>
+                        <button onClick={handleDelete} type="buton" className="hover:bg-white hover:text-red-700 bg-red-700 w-[45%] rounded-md cursor-pointer" name={item.id} value={item.id}>Delete</button>
                       </div>
                     </div>
                   ))}

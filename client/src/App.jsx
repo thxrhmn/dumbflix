@@ -75,6 +75,7 @@ function App() {
         <>
           <Navbar />
           <Routes>
+            
             <Route path="/" element={<Home />} />  
             <Route path="*" element={<NotFound />} />
 
@@ -96,6 +97,7 @@ function App() {
                 <Route path="/transaction" element={<Transaction />} />
               </Route>
             </Route>
+
           </Routes>
         </>
       )}
