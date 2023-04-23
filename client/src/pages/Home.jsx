@@ -3,6 +3,7 @@ import Header from '../components/Header'
 
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { API } from '../config/Api';
 
 function Home() {
   // console.log(import.meta.env.VITE_REACT_APP_BASE_URL)
