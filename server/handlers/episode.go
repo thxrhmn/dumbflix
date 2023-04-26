@@ -1,14 +1,18 @@
 package handlers
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	episodedto "week-02-task/dto/episode"
 	dto "week-02-task/dto/result"
 	"week-02-task/models"
 	"week-02-task/repositories"
 
+	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 )
@@ -29,9 +33,9 @@ func (h *handlerEpisode) FindEpisodesByFilm(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	for i, m := range episodes {
-		episodes[i].ThumbnailFilm = path_file + m.ThumbnailFilm
-	}
+	// for i, m := range episodes {
+	// 	episodes[i].ThumbnailFilm = path_file + m.ThumbnailFilm
+	// }
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: episodes})
 }
@@ -45,7 +49,7 @@ func (h *handlerEpisode) GetEpisodeByFilm(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	episode.ThumbnailFilm = path_file + episode.ThumbnailFilm
+	// episode.ThumbnailFilm = path_file + episode.ThumbnailFilm
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: episode})
 }
@@ -56,10 +60,10 @@ func (h *handlerEpisode) FindEpisodes(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	// image middleware
-	for i, p := range episodes {
-		episodes[i].ThumbnailFilm = path_file + p.ThumbnailFilm
-	}
+	// // image middleware
+	// for i, p := range episodes {
+	// 	episodes[i].ThumbnailFilm = path_file + p.ThumbnailFilm
+	// }
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: episodes})
 }
@@ -72,7 +76,7 @@ func (h *handlerEpisode) GetEpisode(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	episode.ThumbnailFilm = path_file + episode.ThumbnailFilm
+	// episode.ThumbnailFilm = path_file + episode.ThumbnailFilm
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: episode})
 }
@@ -97,14 +101,30 @@ func (h *handlerEpisode) CreateEpisode(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+
+	// Upload file to Cloudinary ...
+	resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "dumbflix"})
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
 	// userLogin := c.Get("userLogin")
 	// userId := userLogin.(jwt.MapClaims)["id"].(float64)
 
 	episode := models.Episode{
 		Title:         request.Title,
-		ThumbnailFilm: request.ThumbnailFilm,
-		LinkFilm:      request.LinkFilm,
-		FilmID:        request.FilmID,
+		ThumbnailFilm: resp.SecureURL,
+		// ThumbnailFilm: request.ThumbnailFilm,
+		LinkFilm: request.LinkFilm,
+		FilmID:   request.FilmID,
 	}
 
 	episode, err = h.EpisodeRepository.CreateEpisode(episode)

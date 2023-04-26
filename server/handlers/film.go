@@ -18,8 +18,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-var path_file = "https://be.heck.eu.org/uploads/"
-
 type handlerFilm struct {
 	FilmRepository repositories.FilmRepository
 }
@@ -34,14 +32,6 @@ func (h *handlerFilm) FindFilms(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	// // image middleware
-	// for i, p := range films {
-	// 	films[i].ThumbnailFilm = path_file + p.ThumbnailFilm
-	// }
-	// for i, p := range films {
-	// 	films[i].ThumbnailFilm = p.ThumbnailFilm
-	// }
-
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: films})
 }
 
@@ -52,8 +42,6 @@ func (h *handlerFilm) GetFilm(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
-
-	// film.ThumbnailFilm = path_file + film.ThumbnailFilm
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: film})
 }
@@ -101,7 +89,6 @@ func (h *handlerFilm) CreateFilm(c echo.Context) error {
 		Title:         request.Title,
 		Linkfilm:      request.Linkfilm,
 		ThumbnailFilm: resp.SecureURL,
-		// ThumbnailFilm: request.ThumbnailFilm,
 		Year:        request.Year,
 		CategoryID:  request.CategoryID,
 		Description: request.Description,
