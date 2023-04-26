@@ -53,7 +53,7 @@ function Profile() {
           <div className="flex status items-center ml-4 mb-3">
             <img src={statusLogo} alt="" />
             <div className="ml-3">
-              <h1 className="font-semibold">{profile.subscribe ? "Active" : "Non active"}</h1>
+              <h1 className="font-semibold">{profile.subscribe == "active" ? "Active" : "Non active"}</h1>
               <h3 className="text-gray-600">Status</h3>
             </div>
           </div>

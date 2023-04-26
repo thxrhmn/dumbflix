@@ -3,12 +3,17 @@ package handlers
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	filmdto "week-02-task/dto/film"
 	dto "week-02-task/dto/result"
 	"week-02-task/models"
 	"week-02-task/repositories"
 
+	"context"
+
+	"github.com/cloudinary/cloudinary-go/v2"
+	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 )
@@ -29,10 +34,13 @@ func (h *handlerFilm) FindFilms(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	// image middleware
-	for i, p := range films {
-		films[i].ThumbnailFilm = path_file + p.ThumbnailFilm
-	}
+	// // image middleware
+	// for i, p := range films {
+	// 	films[i].ThumbnailFilm = path_file + p.ThumbnailFilm
+	// }
+	// for i, p := range films {
+	// 	films[i].ThumbnailFilm = p.ThumbnailFilm
+	// }
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: films})
 }
@@ -45,7 +53,7 @@ func (h *handlerFilm) GetFilm(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
 	}
 
-	film.ThumbnailFilm = path_file + film.ThumbnailFilm
+	// film.ThumbnailFilm = path_file + film.ThumbnailFilm
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: film})
 }
@@ -74,16 +82,29 @@ func (h *handlerFilm) CreateFilm(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
 
-	// userLogin := c.Get("userLogin")
-	// userId := userLogin.(jwt.MapClaims)["id"].(float64)
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+
+	// Upload file to Cloudinary ...
+	resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "dumbflix"})
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	film := models.Films{
 		Title:         request.Title,
 		Linkfilm:      request.Linkfilm,
-		ThumbnailFilm: request.ThumbnailFilm,
-		Year:          request.Year,
-		CategoryID:    request.CategoryID,
-		Description:   request.Description,
+		ThumbnailFilm: resp.SecureURL,
+		// ThumbnailFilm: request.ThumbnailFilm,
+		Year:        request.Year,
+		CategoryID:  request.CategoryID,
+		Description: request.Description,
 	}
 
 	film, err = h.FilmRepository.CreateFilm(film)
