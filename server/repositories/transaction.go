@@ -39,23 +39,19 @@ func (r *repository) CreateTransaction(transaction models.Transactions) (models.
 	return transaction, err
 }
 
-func (r *repository) UpdateTransaction(status string, ID int) (models.Transactions, error) {
+func (r *repository) UpdateTransaction(status string, orderId int) (models.Transactions, error) {
 	var transaction models.Transactions
-	r.db.Preload("User").First(&transaction, ID)
+	r.db.Preload("User").First(&transaction, orderId)
 
-	if status != transaction.Status && status == "succes" {
+	if status != transaction.Status && status == "success" {
 		var user models.User
-		r.db.First(&user, transaction.User.ID)
-		user.Subscribe = "true"
+		r.db.First(&user, transaction.UserID)
+		user.Subscribe = "active"
 		r.db.Save(&user)
 	}
 
-	var transactionData models.Transactions
-	r.db.First(&transactionData, ID)
 	transaction.Status = status
-
-	err := r.db.Save(&transactionData).Error
-
+	err := r.db.Save(&transaction).Error
 	return transaction, err
 }
 
@@ -64,9 +60,3 @@ func (r *repository) DeleteTransaction(transaction models.Transactions, ID int) 
 
 	return transaction, err
 }
-
-// func (r *repository) UpdateTransaction(transaction models.Transactions) (models.Transactions, error) {
-// 	err := r.db.Save(&transaction).Error // Using Save method ORM
-
-// 	return transaction, err
-// }
