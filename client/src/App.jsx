@@ -20,6 +20,7 @@ import { UserContext } from './context/UserContext'
 import { API, setAuthToken } from "./config/Api"
 import NotFound from './components/NotFound'
 import AddCategory from './pages/admin/AddCategory'
+import UpdateFilm from './pages/admin/UpdateFilm'
 
 function App() {
   const [state, dispatch] = useContext(UserContext);
@@ -91,6 +92,7 @@ function App() {
 
               <Route element={<PrivateRouteAdmin/>} >
                 <Route path="/addfilm" element={<AddFilm />} />
+                <Route path="/updatefilm/:id" element={<UpdateFilm />} />
                 <Route path="/addcategory" element={<AddCategory />} />
                 <Route path="/addepisode" element={<AddEpisode />} />
                 <Route path="/dashboard" element={<Film />} />
