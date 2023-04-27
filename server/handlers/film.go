@@ -110,10 +110,23 @@ func (h *handlerFilm) UpdateFilm(c echo.Context) error {
 	dataFile := c.Get("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
 
-	request := new(filmdto.UpdateFilmRequest)
-	if err := c.Bind(&request); err != nil {
-		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	// rubah string ke integer
+	year, _ := strconv.Atoi(c.FormValue("year"))
+	category_id, _ := strconv.Atoi(c.FormValue("category_id"))
+
+	request := filmdto.FilmResponse{
+		Title:         c.FormValue("title"),
+		ThumbnailFilm: dataFile,
+		Year:          year,
+		Linkfilm:      c.FormValue("linkfilm"),
+		CategoryID:    category_id,
+		Description:   c.FormValue("description"),
 	}
+
+	// request := new(filmdto.UpdateFilmRequest)
+	// if err := c.Bind(&request); err != nil {
+	// 	return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	// }
 
 	var ctx = context.Background()
 	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
