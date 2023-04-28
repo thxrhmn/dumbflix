@@ -35,7 +35,50 @@ function MoviesDetail() {
   return (
     <div style={{color: 'white'}} className="detail-movies bg-black">
      <div className="bg-black">
-      {episodes?.map((item, index) => {
+      {film?.category.name == "Movies" ? (
+        <ReactPlayer
+          className="w-[500px] h-[450px] mx-auto bg-blue-300"
+          url={film?.linkfilm}
+          width={"800px"}
+          height="450px"
+          light={
+            <div className="">
+              <img
+                className="w-full h-[450px] mx-auto"
+                src={film?.thumbnailfilm}
+              />
+            </div>
+          }
+        />
+      ): (
+        <>
+          {episodes?.map((item, index) => {
+            if (index === selectedEpisode) {
+              return (
+                <ReactPlayer
+                  key={index}
+                  className="w-[500px] h-[450px] mx-auto bg-blue-300"
+                  url={item.linkFilm}
+                  width={"800px"}
+                  height="450px"
+                  light={
+                    <div className="">
+                      <img
+                        className="w-full h-[450px] mx-auto"
+                        src={item.thumbnailFilm}
+                      />
+                    </div>
+                  }
+                />
+              )
+            } else {
+              return null;
+            }
+          })}
+        </>
+      )}
+
+      {/* {episodes?.map((item, index) => {
         if (index === selectedEpisode) {
           return (
             <ReactPlayer
@@ -57,7 +100,7 @@ function MoviesDetail() {
         } else {
           return null;
         }
-      })}
+      })} */}
       {/* <iframe width="800" height="400" className="mx-auto" src={film?.linkfilm} frameborder="0"></iframe> */}
      </div>
 

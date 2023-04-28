@@ -124,6 +124,7 @@ function UpdateFilm() {
           </div>
           <input
             onChange={handleOnChange}
+            value={form.linkfilm}
             style={{ background: "rgba(210, 210, 210, 0.25)" }}
             className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white"
             type="text"
