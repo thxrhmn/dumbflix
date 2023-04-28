@@ -34,19 +34,19 @@ function UpdateFilm() {
 
   useEffect(() => {
     const getform = async () => {
-        try {
-            const response = await API.get("/film/" + id);
-            setForm({
-                title: response.data.data.title,
-                year: response.data.data.year,
-                thumbnailfilm: '',
-                linkfilm: response.data.data.linkfilm,
-                category_id: response.data.data.category_id,
-                description: response.data.data.description,
-            });
-        } catch (err) {
-            console.log(err);
-        }
+      try {
+        const response = await API.get("/film/" + id);
+        setForm({
+          title: response.data.data.title,
+          year: response.data.data.year,
+          thumbnailfilm: '',
+          linkfilm: response.data.data.linkfilm,
+          category_id: response.data.data.category_id,
+          description: response.data.data.description,
+        });
+      } catch (err) {
+          console.log(err);
+      }
     }
 
     getform();
@@ -54,31 +54,28 @@ function UpdateFilm() {
 
   const handleOnUpdate = useMutation(async (e) => {
     try {
-        e.preventDefault();
+      e.preventDefault();
+      // Configuration
+      const config = {
+          headers: {
+              "Content-type": "multipart/form-data",
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+      };
 
-        // Configuration
-        const config = {
-            headers: {
-                "Content-type": "multipart/form-data",
-            },
-        };
+      // Store data with FormData as object
+      const formData = new FormData();
+      formData.set('title', form.title);
+      formData.set('linkfilm', form.linkfilm)
+      formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
+      formData.set('year', form.year);
+      formData.set('description', form.description);
+      formData.set('category_id', Number(form.category_id));
 
-        // Store data with FormData as object
-        const formData = new FormData();
-
-        formData.set('title', form.title);
-        // if (form.thumbnailfilm) {
-        //     formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name);
-        // }
-        formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
-        formData.set('year', form.year);
-        formData.set('description', form.description);
-        formData.set('category_id', Number(form.category_id));
-
-        // Update film data
-        const response = await API.patch("/film/" + id, formData, config);
-        console.log("update film success : ", response);
-        navigate("/dashboard");
+      // Update film data
+      const response = await API.patch("/film/" + id, formData, config);
+      console.log("update film success : ", response);
+      navigate("/dashboard");
     } catch (error) {
         console.log("update film failed : ", error);
     }

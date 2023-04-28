@@ -59,7 +59,6 @@ func (h *handlerFilm) CreateFilm(c echo.Context) error {
 		Title:         c.FormValue("title"),
 		ThumbnailFilm: dataFile,
 		Year:          year,
-		Linkfilm:      c.FormValue("linkfilm"),
 		CategoryID:    category_id,
 		Description:   c.FormValue("description"),
 	}
@@ -87,7 +86,6 @@ func (h *handlerFilm) CreateFilm(c echo.Context) error {
 
 	film := models.Films{
 		Title:         request.Title,
-		Linkfilm:      request.Linkfilm,
 		ThumbnailFilm: resp.SecureURL,
 		Year:          request.Year,
 		CategoryID:    request.CategoryID,
@@ -118,7 +116,6 @@ func (h *handlerFilm) UpdateFilm(c echo.Context) error {
 		Title:         c.FormValue("title"),
 		ThumbnailFilm: dataFile,
 		Year:          year,
-		Linkfilm:      c.FormValue("linkfilm"),
 		CategoryID:    category_id,
 		Description:   c.FormValue("description"),
 	}

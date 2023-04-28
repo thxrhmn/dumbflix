@@ -5,7 +5,6 @@ import "week-02-task/models"
 type CreateFilmRequest struct {
 	Id            int             `json:"id"`
 	Title         string          `json:"title" form:"title" validate:"required"`
-	Linkfilm      string          `json:"linkfilm" form:"linkfilm" validate:"required"`
 	ThumbnailFilm string          `json:"thumbnailfilm" form:"thumbnailfilm" validate:"required"`
 	Year          int             `json:"year" form:"year" validate:"required"`
 	Category      models.Category `json:"category" form:"category" validate:"required"`
@@ -16,7 +15,6 @@ type CreateFilmRequest struct {
 type UpdateFilmRequest struct {
 	Id            int             `json:"id"`
 	Title         string          `json:"title" form:"title"`
-	Linkfilm      string          `json:"linkfilm" form:"linkfilm"`
 	ThumbnailFilm string          `json:"thumbnailfilm" form:"thumbnailfilm"`
 	Year          int             `json:"year" form:"year"`
 	Category      models.Category `json:"category" form:"category" validate:"required"`

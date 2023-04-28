@@ -12,7 +12,6 @@ function AddFilm() {
 
   const [form, setForm] = useState({
     title: '',
-    linkfilm: '',
     thumbnailfilm: '',
     year: '',
     description: '',
@@ -53,7 +52,6 @@ function AddFilm() {
       // store data with FormData as object
       const formData = new FormData()
       formData.set('title', form.title)
-      formData.set('linkfilm', form.linkfilm)
       formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
       formData.set('year', form.year)
       formData.set('description', form.description)
@@ -93,7 +91,6 @@ function AddFilm() {
               <img src={Attach} alt="" />
             </div>
           </div>
-          <input onChange={handleChange} style={{background: "rgba(210, 210, 210, 0.25)"}} className="w-full mr-3 p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="text" name="linkfilm" id="linkfilm" placeholder="Link Film" />
           <input onChange={handleChange} style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="number" name="year" id="year" placeholder="Year" />
 
           <select onChange={handleChange} name="category_id" id="category_id" style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] text-white border-white border-[1px] ">
