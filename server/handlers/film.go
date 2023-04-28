@@ -116,6 +116,7 @@ func (h *handlerFilm) UpdateFilm(c echo.Context) error {
 
 	request := filmdto.FilmResponse{
 		Title:         c.FormValue("title"),
+		Linkfilm:      c.FormValue("linkfilm"),
 		ThumbnailFilm: dataFile,
 		Year:          year,
 		CategoryID:    category_id,
@@ -152,6 +153,10 @@ func (h *handlerFilm) UpdateFilm(c echo.Context) error {
 
 	if request.Title != "" {
 		film.Title = request.Title
+	}
+
+	if request.Linkfilm != "" {
+		film.Linkfilm = request.Linkfilm
 	}
 
 	if request.ThumbnailFilm != "" {

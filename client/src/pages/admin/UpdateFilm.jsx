@@ -16,7 +16,7 @@ function UpdateFilm() {
     description: "",
   });
 
-  console.log(form)
+  console.log(form);
 
   const handleOnChange = (e) => {
     setForm({
@@ -26,10 +26,10 @@ function UpdateFilm() {
     });
   };
 
-  const { data: categories } = useQuery('categoriesCache', async () => {
+  const { data: categories } = useQuery("categoriesCache", async () => {
     const response = await API.get("/categories");
     return response.data.data;
-  })
+  });
 
   useEffect(() => {
     const getform = async () => {
@@ -38,14 +38,14 @@ function UpdateFilm() {
         setForm({
           title: response.data.data.title,
           year: response.data.data.year,
-          thumbnailfilm: '',
+          thumbnailfilm: "",
           category_id: response.data.data.category_id,
           description: response.data.data.description,
         });
       } catch (err) {
-          console.log(err);
+        console.log(err);
       }
-    }
+    };
 
     getform();
   }, [id]);
@@ -55,34 +55,38 @@ function UpdateFilm() {
       e.preventDefault();
       // Configuration
       const config = {
-          headers: {
-              "Content-type": "multipart/form-data",
-              'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          },
+        headers: {
+          "Content-type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       };
 
       // Store data with FormData as object
       const formData = new FormData();
-      formData.set('title', form.title);
-      formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
-      formData.set('year', form.year);
-      formData.set('description', form.description);
-      formData.set('category_id', Number(form.category_id));
+      formData.set("title", form.title);
+      formData.set(
+        "thumbnailfilm",
+        form.thumbnailfilm[0],
+        form.thumbnailfilm[0].name
+      );
+      formData.set("year", form.year);
+      formData.set("description", form.description);
+      formData.set("category_id", Number(form.category_id));
 
       // Update film data
       const response = await API.patch("/film/" + id, formData, config);
       console.log("update film success : ", response);
       navigate("/dashboard");
     } catch (error) {
-        console.log("update film failed : ", error);
+      console.log("update film failed : ", error);
     }
   });
 
-  const fileInputRefAttach = useRef(null)
+  const fileInputRefAttach = useRef(null);
 
   const handleClickAttach = () => {
-    fileInputRefAttach.current.click()
-  }
+    fileInputRefAttach.current.click();
+  };
 
   return (
     <div className="bg-black w-screen h-screen py-5">
@@ -121,6 +125,15 @@ function UpdateFilm() {
           </div>
           <input
             onChange={handleOnChange}
+            style={{ background: "rgba(210, 210, 210, 0.25)" }}
+            className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white"
+            type="text"
+            name="linkfilm"
+            id="linkfilm"
+            placeholder="Link Film"
+          />
+          <input
+            onChange={handleOnChange}
             value={form.year}
             style={{ background: "rgba(210, 210, 210, 0.25)" }}
             className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white"
@@ -143,7 +156,14 @@ function UpdateFilm() {
             </option>
 
             {categories?.map((item) => (
-              <option style={{background: "rgba(210, 210, 210, 0.25)"}} className="text-black" name={item.id} value={item.id}>{item.name}</option>
+              <option
+                style={{ background: "rgba(210, 210, 210, 0.25)" }}
+                className="text-black"
+                name={item.id}
+                value={item.id}
+              >
+                {item.name}
+              </option>
             ))}
           </select>
 
