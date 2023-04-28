@@ -12,7 +12,6 @@ function UpdateFilm() {
     title: "",
     year: "",
     thumbnailfilm: "",
-    linkfilm: "",
     category_id: "",
     description: "",
   });
@@ -40,7 +39,6 @@ function UpdateFilm() {
           title: response.data.data.title,
           year: response.data.data.year,
           thumbnailfilm: '',
-          linkfilm: response.data.data.linkfilm,
           category_id: response.data.data.category_id,
           description: response.data.data.description,
         });
@@ -66,7 +64,6 @@ function UpdateFilm() {
       // Store data with FormData as object
       const formData = new FormData();
       formData.set('title', form.title);
-      formData.set('linkfilm', form.linkfilm)
       formData.set('thumbnailfilm', form.thumbnailfilm[0], form.thumbnailfilm[0].name)
       formData.set('year', form.year);
       formData.set('description', form.description);
@@ -124,16 +121,6 @@ function UpdateFilm() {
           </div>
           <input
             onChange={handleOnChange}
-            value={form.linkfilm}
-            style={{ background: "rgba(210, 210, 210, 0.25)" }}
-            className="w-full mr-3 p-2 mb-3 rounded-[3px] border-white border-[1px] text-white"
-            type="text"
-            name="linkfilm"
-            id="linkfilm"
-            placeholder="Link Film"
-          />
-          <input
-            onChange={handleOnChange}
             value={form.year}
             style={{ background: "rgba(210, 210, 210, 0.25)" }}
             className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white"
@@ -158,7 +145,6 @@ function UpdateFilm() {
             {categories?.map((item) => (
               <option style={{background: "rgba(210, 210, 210, 0.25)"}} className="text-black" name={item.id} value={item.id}>{item.name}</option>
             ))}
-
           </select>
 
           <textarea
