@@ -57,6 +57,7 @@ func (h *handlerFilm) CreateFilm(c echo.Context) error {
 
 	request := filmdto.FilmResponse{
 		Title:         c.FormValue("title"),
+		Linkfilm:      c.FormValue("linkfilm"),
 		ThumbnailFilm: dataFile,
 		Year:          year,
 		CategoryID:    category_id,
@@ -86,6 +87,7 @@ func (h *handlerFilm) CreateFilm(c echo.Context) error {
 
 	film := models.Films{
 		Title:         request.Title,
+		Linkfilm:      request.Linkfilm,
 		ThumbnailFilm: resp.SecureURL,
 		Year:          request.Year,
 		CategoryID:    request.CategoryID,

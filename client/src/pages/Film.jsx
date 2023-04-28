@@ -65,23 +65,23 @@ function Film() {
           <h1 style={{ fontSize: "20px" }} className="text-white font-semibold">List Film</h1>
           <select value={selectedValue} onChange={handleChange} className="border-[1px] border-white rounded-md p-1 text-white ml-2 bg-black" name="categories" id="categories">
             
-            {categories?.map((item) => (
-              <option value={item.name}>{item.name}</option>
+            {categories?.map((item, index) => (
+              <option key={index} value={item.name}>{item.name}</option>
             ))}
             
           </select>
         </div>
 
-        <h1 className="text-red-700 font-semibold bg-white p-1 rounded-md px-5 ml-auto cursor-pointer">
+        <h1 className="text-white font-semibold bg-red-700 hover:bg-white hover:text-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
           <Link to={"/transaction"}>Transaction</Link>
         </h1>
-        <h1 className="text-white font-semibold bg-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
+        <h1 className="text-white font-semibold bg-red-700 hover:bg-white hover:text-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
           <Link to={"/addcategory"}>+ Add Categories</Link>
         </h1>
-        <h1 className="text-white font-semibold bg-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
+        <h1 className="text-white font-semibold bg-red-700 hover:bg-white hover:text-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
           <Link to={"/addepisode"}>+ Add Episode</Link>
         </h1>
-        <h1 className="text-white font-semibold bg-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
+        <h1 className="text-white font-semibold bg-red-700 hover:bg-white hover:text-red-700 p-1 rounded-md px-5 ml-auto cursor-pointer">
           <Link to={"/addfilm"}>+ Add Film</Link>
         </h1>
       </div>
@@ -93,8 +93,8 @@ function Film() {
             <>
               {categoryTvshows?.length !== 0 ? (
                 <>
-                  {categoryTvshows?.map((item) => (
-                    <div className="card__custom p-2 w-[15%]">
+                  {categoryTvshows?.map((item, index) => (
+                    <div key={index} className="card__custom p-2 w-[15%]">
                       <Link to={`/moviesdetail/${item.id}`}><img src={item.thumbnailfilm} /></Link>
                       <Link to={`/moviesdetail/${item.id}`}>{item.title}</Link>
                       <h3 className="text-slate-700">{item.year}</h3>
@@ -111,8 +111,8 @@ function Film() {
             <>
               {categoryMovies?.length !== 0 ? (
                 <>
-                  {categoryMovies?.map((item) => (
-                    <div className="card__custom p-2 w-[15%]">
+                  {categoryMovies?.map((item, index) => (
+                    <div key={index} className="card__custom p-2 w-[15%]">
                       <Link to={`/moviesdetail/${item.id}`}><img src={item.thumbnailfilm} /></Link>
                       <Link to={`/moviesdetail/${item.id}`}>{item.title}</Link>
                       <h3 className="text-slate-700">{item.year}</h3>

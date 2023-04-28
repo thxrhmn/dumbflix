@@ -1,23 +1,64 @@
-import React from 'react'
-import moviesDetail3 from '../assets/images/moviesdetail/moneyheist-3.png'
+import React, {useState, useContext} from 'react'
 import { Link, useParams } from 'react-router-dom'
-import FakeDataFinal from "../components/FakeDataFinal"
+import ReactPlayer from "react-player";
 import { useQuery } from 'react-query'
 import { API } from '../config/Api'
+import { UserContext } from '../context/UserContext';
 
 function MoviesDetail() {
   const { id } = useParams()
+  const [selectedEpisode, setSelectedEpisode] = useState(0)
+  const [state] = useContext(UserContext)
+
+  const handleNextEpisode = () => {
+    setSelectedEpisode((selectedEpisode + 1) % episodes.length)
+  }
+
+  const handlePrevEpisode = () => {
+    setSelectedEpisode(
+      (selectedEpisode - 1 + episodes.length) % episodes.length
+    )
+  }
 
   let { data: film } = useQuery('filmDetailChache', async () => {
     const response = await API.get(`/film/${id}`)
     return response.data.data
   }) 
-  console.log(film) 
+
+  let { data: episodes } = useQuery("episodesCache", async () => {
+    const response = await API.get(`film/${id}/episodes`)
+    return response.data.data;
+  })
+
+
 
   return (
     <div style={{color: 'white'}} className="detail-movies bg-black">
      <div className="bg-black">
-       <iframe width="800" height="400" className="mx-auto" src={film?.linkfilm} frameborder="0"></iframe>
+      {episodes?.map((item, index) => {
+        if (index === selectedEpisode) {
+          return (
+            <ReactPlayer
+              key={index}
+              className="w-[500px] h-[450px] mx-auto bg-blue-300"
+              url={item.linkFilm}
+              width={"800px"}
+              height="450px"
+              light={
+                <div className="">
+                  <img
+                    className="w-full h-[450px] mx-auto"
+                    src={item.thumbnailFilm}
+                  />
+                </div>
+              }
+            />
+          )
+        } else {
+          return null;
+        }
+      })}
+      {/* <iframe width="800" height="400" className="mx-auto" src={film?.linkfilm} frameborder="0"></iframe> */}
      </div>
 
      <div className="flex p-5 justify-center items-center">
@@ -45,45 +86,34 @@ function MoviesDetail() {
 
        <div className="carousel w-[30%] rounded-md flex flex-col">
         <div className="mb-5 flex justify-end">
-        <Link to={"/addepisode"}><h1 className='p-2 w-40 bg-red-700 text-center rounded-md cursor-pointer'>+ Add Episode</h1></Link>
+          {state.user.role === "Admin" && (
+            <Link to={"/addepisode"}>
+              <h1 className='p-2 w-40 bg-red-700 text-center rounded-md cursor-pointer'>+ Add Episode</h1>
+            </Link>
+          )}
         </div>
         
          <div className="carousel w-[100%] rounded-md h-[80%]">
-
-           <div id="slide1" className="carousel-item relative w-full">
-             <img src={moviesDetail3} className="w-full" />
-             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-               <a href="#slide4" className="btn btn-circle">❮</a> 
-               <a href="#slide2" className="btn btn-circle">❯</a>
-             </div>
-           </div> 
-
-           <div id="slide2" className="carousel-item relative w-full">
-             <img src={moviesDetail3} className="w-full" />
-             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-               <a href="#slide1" className="btn btn-circle">❮</a> 
-               <a href="#slide3" className="btn btn-circle">❯</a>
-             </div>
-           </div> 
-
-           <div id="slide3" className="carousel-item relative w-full">
-             <img src={moviesDetail3} className="w-full" />
-             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-               <a href="#slide2" className="btn btn-circle">❮</a> 
-               <a href="#slide4" className="btn btn-circle">❯</a>
-             </div>
-           </div> 
-
-           <div id="slide4" className="carousel-item relative w-full">
-             <img src={moviesDetail3} className="w-full" />
-             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-               <a href="#slide3" className="btn btn-circle">❮</a> 
-               <a href="#slide1" className="btn btn-circle">❯</a>
-             </div>
-           </div>
-
+          
+          {episodes?.map((item, index) => {
+            if (index === selectedEpisode) {
+              return (
+                <div key={index} className="carousel-item relative w-full">
+                  <img src={item.thumbnailFilm} className="w-full" />
+                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <div onClick={handlePrevEpisode} className="btn btn-circle">❮</div> 
+                    <div onClick={handleNextEpisode} className="btn btn-circle">❯</div>
+                  </div>
+                </div> 
+              )
+            } else {
+              return null;
+            }
+          })}
+          
          </div>
-         <h3 className="">Money Heist : Episode 1</h3>
+         {/* <h3 className=""></h3> */}
+         {/* <h3 className="">Money Heist : Episode 1</h3> */}
        </div>
 
      </div>
