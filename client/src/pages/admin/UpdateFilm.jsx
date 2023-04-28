@@ -10,8 +10,9 @@ function UpdateFilm() {
 
   const [form, setForm] = useState({
     title: "",
-    year: "",
+    linkfilm: "",
     thumbnailfilm: "",
+    year: "",
     category_id: "",
     description: "",
   });
@@ -37,8 +38,9 @@ function UpdateFilm() {
         const response = await API.get("/film/" + id);
         setForm({
           title: response.data.data.title,
-          year: response.data.data.year,
+          linkfilm: response.data.data.linkfilm,
           thumbnailfilm: "",
+          year: response.data.data.year,
           category_id: response.data.data.category_id,
           description: response.data.data.description,
         });
@@ -64,11 +66,8 @@ function UpdateFilm() {
       // Store data with FormData as object
       const formData = new FormData();
       formData.set("title", form.title);
-      formData.set(
-        "thumbnailfilm",
-        form.thumbnailfilm[0],
-        form.thumbnailfilm[0].name
-      );
+      formData.set("linkfilm", form.linkfilm);
+      formData.set("thumbnailfilm", form.thumbnailfilm[0], form.thumbnailfilm[0].name);
       formData.set("year", form.year);
       formData.set("description", form.description);
       formData.set("category_id", Number(form.category_id));
