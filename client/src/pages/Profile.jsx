@@ -82,8 +82,24 @@ function Profile() {
         <div className="w-[40%] p-5">
           <div className="flex flex-col justify-center">
             <img className="rounded-md" src={avatarImage} alt="" />
-            <div className="w-25 mt-5 mx-auto">
-              <a className="bg-red-700 py-3 px-11 rounded-md">Change Photo Profile</a>
+            <div className="w-full mt-5">
+
+              <label htmlFor="my-modal-4" className="btn bg-red-700 py-3 px-auto w-full rounded-md">Change Photo Profile</label>
+
+              <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+              <label htmlFor="my-modal-4" className="modal cursor-pointer">
+                <label className="modal-box relative" htmlFor="">
+                  <h1>Update Profile</h1>
+                  <input type="text" placeholder="Full Name" className="input input-bordered w-full mb-4" />
+                  <input type="text" placeholder="Email" className="input input-bordered w-full mb-4" />
+                  <input type="text" placeholder="Status" className="input input-bordered w-full mb-4" />
+                  <input type="text" placeholder="Gender" className="input input-bordered w-full mb-4" />
+                  <input type="text" placeholder="Phone" className="input input-bordered w-full mb-4" />
+                  <input type="text" placeholder="Address" className="input input-bordered w-full mb-4" />
+                  
+                </label>
+              </label>
+
             </div>
           </div>
         </div>

@@ -30,7 +30,8 @@ function MoviesDetail() {
     return response.data.data;
   })
 
-
+  const videoId = film?.linkfilm.split('v=')[1];
+  const thumbnailYoutube = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
 
   return (
     <div style={{color: 'white'}} className="detail-movies bg-black">
@@ -45,7 +46,7 @@ function MoviesDetail() {
             <div className="">
               <img
                 className="w-full h-[450px] mx-auto"
-                src={film?.thumbnailfilm}
+                src={thumbnailYoutube}
               />
             </div>
           }
@@ -77,31 +78,6 @@ function MoviesDetail() {
           })}
         </>
       )}
-
-      {/* {episodes?.map((item, index) => {
-        if (index === selectedEpisode) {
-          return (
-            <ReactPlayer
-              key={index}
-              className="w-[500px] h-[450px] mx-auto bg-blue-300"
-              url={item.linkFilm}
-              width={"800px"}
-              height="450px"
-              light={
-                <div className="">
-                  <img
-                    className="w-full h-[450px] mx-auto"
-                    src={item.thumbnailFilm}
-                  />
-                </div>
-              }
-            />
-          )
-        } else {
-          return null;
-        }
-      })} */}
-      {/* <iframe width="800" height="400" className="mx-auto" src={film?.linkfilm} frameborder="0"></iframe> */}
      </div>
 
      <div className="flex p-5 justify-center items-center">
@@ -129,7 +105,7 @@ function MoviesDetail() {
 
        <div className="carousel w-[30%] rounded-md flex flex-col">
         <div className="mb-5 flex justify-end">
-          {state.user.role === "Admin" && (
+          {state.user.role === "Admin" && film?.category.name == "Tv Shows" && (
             <Link to={"/addepisode"}>
               <h1 className='p-2 w-40 bg-red-700 text-center rounded-md cursor-pointer'>+ Add Episode</h1>
             </Link>
@@ -138,6 +114,14 @@ function MoviesDetail() {
         
          <div className="carousel w-[100%] rounded-md h-[80%]">
           
+          {film?.category.name == "Movies" && (
+            <div className="carousel-item relative w-full">
+              <img src={thumbnailYoutube} className="w-full" />
+              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+              </div>
+            </div> 
+          )}
+
           {episodes?.map((item, index) => {
             if (index === selectedEpisode) {
               return (
@@ -155,8 +139,6 @@ function MoviesDetail() {
           })}
           
          </div>
-         {/* <h3 className=""></h3> */}
-         {/* <h3 className="">Money Heist : Episode 1</h3> */}
        </div>
 
      </div>

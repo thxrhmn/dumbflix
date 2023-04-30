@@ -7,6 +7,7 @@ import { API } from "../../config/Api";
 function UpdateFilm() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const [showMessage, setShowMessage] = useState(null)
 
   const [form, setForm] = useState({
     title: "",
@@ -72,12 +73,42 @@ function UpdateFilm() {
       formData.set("description", form.description);
       formData.set("category_id", Number(form.category_id));
 
+      const succesAlert = (
+        <div className="alert alert-success shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Update Film Succes!</span>
+          </div>
+        </div>
+      )
+
       // Update film data
       const response = await API.patch("/film/" + id, formData, config);
+      setShowMessage(succesAlert)
       console.log("update film success : ", response);
-      navigate("/dashboard");
+
+      function redirectPage(){
+        const timeoutId = setTimeout(() => {
+          navigate("/dashboard")
+        }, 2000)
+        return () => clearTimeout(timeoutId)
+      }
+      redirectPage()
+
     } catch (error) {
       console.log("update film failed : ", error);
+
+      const dangerAlert = (
+        <div className="alert alert-error shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Update Film Failed!</span>
+          </div>
+        </div>
+      )
+
+      setShowMessage(dangerAlert)
+
     }
   });
 
@@ -88,8 +119,12 @@ function UpdateFilm() {
   };
 
   return (
-    <div className="bg-black w-screen h-screen py-5">
-      <form onSubmit={(e) => handleOnUpdate.mutate(e)}>
+    <div className="bg-black w-screen h-screen">
+      {/* <div className="bg-green-600 p-2 text-black">Update Succes!</div> */}
+
+      {showMessage && showMessage}
+
+      <form onSubmit={(e) => handleOnUpdate.mutate(e)} className="pt-6">
         <div className="mx-auto w-[620px] flex flex-col p-3 rounded-md">
           <h1 className="text-white font-semibold my-3">Update Film</h1>
           <div className="flex">

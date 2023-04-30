@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 function AddEpisode() {
   const navigate = useNavigate()
+  const [showMessage, setShowMessage] = useState(null)
 
   const [form, setForm] = useState({
     title: '',
@@ -43,10 +44,39 @@ function AddEpisode() {
       // insert episode data
       const response = await API.post('/episode', formData, config)
       console.log("add episode success : ", response)
-      navigate('/dashboard')
+      // navigate('/dashboard')
+
+      const succesAlert = (
+        <div className="alert alert-success shadow-lg mb-7">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Add Episode Succes!</span>
+          </div>
+        </div>
+      )
+
+      setShowMessage(succesAlert)
+    
+      function redirectPage(){
+        const timeoutId = setTimeout(() => {
+          navigate("/dashboard")
+        }, 2000)
+        return () => clearTimeout(timeoutId)
+      }
+      redirectPage()
+
     } catch (error) {
       console.log("add episode failed : ", error)
-      console.log(form)
+      const dangerAlert = (
+        <div className="alert alert-error shadow-lg mb-7">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Add Episode Failed!</span>
+          </div>
+        </div>
+      )
+
+      setShowMessage(dangerAlert)
     }
   })
 
@@ -57,8 +87,9 @@ function AddEpisode() {
   };
 
   return (
-    <div className="bg-black w-full h-screen py-5">
-      <form onSubmit={(e) => handleSubmit.mutate(e)}>
+    <div className="bg-black w-full h-screen">
+      {showMessage && showMessage}
+      <form onSubmit={(e) => handleSubmit.mutate(e)} className="pt-10">
         <div style={{backgroundColor: "#1F1F1F"}} className="mx-auto w-[620px] flex flex-col p-3 rounded-md">
           <h1 className="text-white font-semibold my-3 text-2xl">Add Episode</h1>
           <div className="flex"> 

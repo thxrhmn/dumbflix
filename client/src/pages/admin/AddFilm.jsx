@@ -6,6 +6,7 @@ import { useMutation } from 'react-query'
 import { API } from "../../config/Api"
 
 function AddFilm() {
+  const [showMessage, setShowMessage] = useState(null)
   const [categories, setCategories] = useState([]) // store all category data
 
   const navigate = useNavigate()
@@ -62,10 +63,39 @@ function AddFilm() {
       // insert film data
       const response = await API.post('/film', formData, config)
       console.log("add film success : ", response)
-      navigate('/dashboard')
+
+      const succesAlert = (
+        <div className="alert alert-success shadow-lg mb-3">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Add Film Succes!</span>
+          </div>
+        </div>
+      )
+
+      setShowMessage(succesAlert)
+
+      function redirectPage(){
+        const timeoutId = setTimeout(() => {
+          navigate('/dashboard')
+        }, 2000)
+        return () => clearTimeout(timeoutId)
+      }
+      redirectPage()
+
     } catch (error) {
       console.log("add film failed : ", error)
-      console.log(form)
+
+      const dangerAlert = (
+        <div className="alert alert-error shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>Add Film Failed!</span>
+          </div>
+        </div>
+      )
+
+      setShowMessage(dangerAlert)
     }
   })
 
@@ -80,7 +110,9 @@ function AddFilm() {
   }
 
   return (
-    <div className="bg-black w-screen h-screen py-5">
+    <div className="bg-black w-screen h-screen">
+
+      {showMessage && showMessage}
 
       <form onSubmit={(e) => handleSubmit.mutate(e)}>
         <div className="mx-auto w-[620px] flex flex-col p-3 rounded-md">
@@ -106,19 +138,6 @@ function AddFilm() {
           </select>
 
           <textarea onChange={handleChange} style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-4 rounded-[3px] border-white border-[1px] text-white" type="text" name="description" id="description" placeholder="Description" />
-          
-          {/* <div className="flex">
-            <input style={{background: "rgba(210, 210, 210, 0.25)"}} className="w-[70%] mr-3 p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="text" name="title-episode" id="title-episode" placeholder="Title Episode" />
-            <input ref={fileInputRefAttach} hidden style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="file" name="attach2" id="attach2" />
-            <div onClick={handleClickAttach} style={{background: "rgba(210, 210, 210, 0.25)"}}  className="cursor-pointer items-center flex w-[30%] justify-between p-2 mb-3 rounded-[3px] border-white border-[1px] text-white">
-              <h3>Attach Thumbnail</h3>
-              <img src={Attach} alt="" />
-            </div>
-          </div>
-          <input style={{background: "rgba(210, 210, 210, 0.25)"}} className="p-2 mb-3 rounded-[3px] border-white border-[1px] text-white" type="text" name="link-film" id="link-film" placeholder="Link Film" />
-          <div style={{background: "rgba(210, 210, 210, 0.25)"}}  className="cursor-pointer items-center flex w-[100%] justify-between mb-3 rounded-[3px] border-white border-[1px] text-white">
-            <h3 className="text-center text-red-600 font-semibold size mx-auto text-4xl my-auto">+</h3>
-          </div> */}
 
           <div className="">
             <button type="submit" className="p-2 bg-red-700 rounded-md w-[200px] float-right text-white font-semibold">Save</button>
