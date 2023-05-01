@@ -70,33 +70,31 @@ function Payment() {
           </select>
 
           <div className='text-black flex gap-6 mb-5'>
-            <div className='w-[120px] h-[150px] hover:bg-red-600 hover:border-red-300 rounded-md text-white border-2 border-white flex flex-col items-center justify-center active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>
+            <div className='w-[120px] h-[150px] rounded-md text-white border-2 border-white flex flex-col items-center justify-center active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300'>
               <div type="submit" onClick={() => handleSubmit.mutate({price:30000,days:30})} className='h-1/2'>
-                <h1 className='text-center font-semibold text-5xl'>30K</h1>
+                <h1 className='text-center font-semibold text-5xl text-red-600 hover:text-white'>30K</h1>
                 <h1 className='text-center font-semibold text-1xl'>1 Month</h1>
               </div>
             </div>
             <div type="submit" onClick={() => handleSubmit.mutate({price:80000,days:90})} className='w-[120px] h-[150px] rounded-md text-white border-2 border-white flex flex-col items-center justify-center'>
               <div className='h-1/2'>
-                <h1 className='text-center font-semibold text-5xl'>80K</h1>
+                <h1 className='text-center font-semibold text-5xl text-red-600 hover:text-white'>80K</h1>
                 <h1 className='text-center font-semibold text-1xl'>3 Month</h1>
               </div>
             </div>
             <div type="submit" onClick={() => handleSubmit.mutate({price:150000,days:180})} className='w-[120px] h-[150px] rounded-md text-white border-2 border-white flex flex-col items-center justify-center'>
               <div className='h-1/2'>
-                <h1 className='text-center font-semibold text-5xl'>150K</h1>
+                <h1 className='text-center font-semibold text-5xl text-red-600 hover:text-white'>150K</h1>
                 <h1 className='text-center font-semibold text-1xl'>6 Month</h1>
               </div>
             </div>
             <div type="submit" onClick={() => handleSubmit.mutate({price:300000,days:360})} className='w-[120px] h-[150px] rounded-md text-white border-2 border-white flex flex-col items-center justify-center'>
               <div className='h-1/2'>
-                <h1 className='text-center font-semibold text-5xl'>300K</h1>
+                <h1 className='text-center font-semibold text-5xl text-red-600 hover:text-white'>300K</h1>
                 <h1 className='text-center font-semibold text-1xl'>12 Month</h1>
               </div>
             </div>
           </div>
-
-          <button className="bg-red-700 font-semibold p-3 rounded-md text-white mb-3" type="submit">Kirim</button>
         </form>
       </div>
     </div>
