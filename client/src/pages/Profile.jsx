@@ -90,13 +90,12 @@ function Profile() {
               <label htmlFor="my-modal-4" className="modal cursor-pointer">
                 <label className="modal-box relative" htmlFor="">
                   <h1>Update Profile</h1>
-                  <input type="text" placeholder="Full Name" className="input input-bordered w-full mb-4" />
-                  <input type="text" placeholder="Email" className="input input-bordered w-full mb-4" />
-                  <input type="text" placeholder="Status" className="input input-bordered w-full mb-4" />
-                  <input type="text" placeholder="Gender" className="input input-bordered w-full mb-4" />
-                  <input type="text" placeholder="Phone" className="input input-bordered w-full mb-4" />
-                  <input type="text" placeholder="Address" className="input input-bordered w-full mb-4" />
-                  
+                  <input type="text" value={profile.fullname} placeholder="Full Name" className="input input-bordered w-full mb-4" />
+                  <input type="text" value={profile.email} placeholder="Email" className="input input-bordered w-full mb-4" />
+                  <input type="text" value={profile.subscribe} disabled placeholder="Status" className="input input-bordered w-full mb-4" />
+                  <input type="text" value={profile.gender} placeholder="Gender" className="input input-bordered w-full mb-4" />
+                  <input type="text" value={profile.phone} placeholder="Phone" className="input input-bordered w-full mb-4" />
+                  <input type="text" value={profile.address} placeholder="Address" className="input input-bordered w-full mb-4" />
                 </label>
               </label>
 
