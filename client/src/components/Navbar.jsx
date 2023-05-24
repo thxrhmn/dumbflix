@@ -36,7 +36,7 @@ function Navbar() {
   }
 
   // avatar image
-  const avatarimage = import.meta.env.VITE_REACT_APP_IMAGE_URL + state.user.avatarprofile
+  const avatarimage = state.user.avatarprofile
 
   return (
     <>
