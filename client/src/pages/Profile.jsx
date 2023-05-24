@@ -29,7 +29,7 @@ function Profile() {
   }, [])
 
   // avatar image
-  const avatarImage = import.meta.env.VITE_REACT_APP_IMAGE_URL + profile.avatarprofile
+  const avatarImage = "https://i.pinimg.com/originals/47/4f/5f/474f5fa00f60fb5c2e47c9dfcd7b1593.jpg"
 
   return (
     <div style={{color: 'white'}} className="bg-black pb-[200px] pt-[50px]">
